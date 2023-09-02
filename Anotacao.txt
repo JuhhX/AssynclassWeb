@@ -1,0 +1,38 @@
+O QUE FAZER:
+
+[x] - Listagem de alunos para o professor
+[X] - Professor pode buscar por seus alunos para que forme um grupo com eles
+[X] - Aluno poderá ver os grupos em que foi adicionado
+[X] - Aluno pode buscar mentores disponíveis para aquela matéria
+[X] - Professor poderá aceitar/recusar mentorandos
+[X] - O professor poderá salvar seu conteúdo
+[X] - Os professores e alunos poderão ver seus chats
+[X] - Os professores e alunos poderão enviar mensagens no chat
+[X] - O professor poderá enviar conteúdos para seus grupos
+[X] - O aluno poderá ver o conteúdo postado pelo professor
+
+[X] - Interface da instituição
+[X] - Interface de perfil usuário, aluno e instituição
+[X] - Cadastro de aluno e professor por meio da instituição
+
+[] - Mensagens de "Nenhum resultado encontrado" para telas que tem pesquisas
+[] - ASSIM QUE CARREGAR O USUARIO PELA PRIMEIRA VEZ, QUARDAR SEUS DADOS PUBLICOS EM COOKIES
+[] - PERMITIR INSERIR PAGINAS ENTRE PÁGINAS NA CRIAÇÃO DE CONTEUDO
+[] - MOSTRAR CORRETAMENTE QUANDO A PRIMEIRA PÁGINA FOR APAGADA E A QUANTIDADE DE PAGINAS FOR MAIOR DO QUE 1
+
+//EM ATRASO
+[] - Adição de referências a outro professor ao copiar conteúdo
+
+//https://recharts.org/en-US
+[{"idContent":0,"contentName":"React","contentDescription":"Conteúdo sobre como iniciar um projeto em react com Next.JS","idTeacher":"54321","content":"[{\"page\":0,\"data\":[{\"key\":\"0.9942571123690125\",\"type\":\"text\",\"x\":29,\"y\":19,\"text\":\"Next.JS\",\"customStyles\":{\"borderColor\":\"transparent\",\"width\":350,\"backgroundColor\":\"transparent\"},\"textStyles\":{\"fontSize\":32,\"fontWeight\":\"normal\",\"color\":\"#0626cc\"}},{\"key\":\"0.04068142367355421\",\"type\":\"text\",\"x\":30,\"y\":88,\"text\":\"Next.js is a full-stack React framework. It’s versatile and lets you create React apps of any size—from a mostly static blog to a complex dynamic application. To create a new Next.js project, run in your terminal:\",\"customStyles\":{\"borderColor\":\"transparent\",\"width\":630,\"backgroundColor\":\"transparent\"},\"textStyles\":{\"fontSize\":16,\"fontWeight\":\"normal\",\"color\":\"black\"}},{\"key\":\"0.26225371342996784\",\"type\":\"text\",\"x\":41,\"y\":248,\"text\":\"npx create-next-app\",\"customStyles\":{\"borderColor\":\"#4169E1\",\"width\":350,\"backgroundColor\":\"transparent\"},\"textStyles\":{\"fontSize\":16,\"fontWeight\":\"normal\",\"color\":\"#4a4a4a\"}},{\"key\":\"0.03594665704410671\",\"type\":\"text\",\"x\":33,\"y\":193,\"text\":\"No terminal:\",\"customStyles\":{\"borderColor\":\"transparent\",\"width\":350,\"backgroundColor\":\"transparent\"},\"textStyles\":{\"fontSize\":16,\"fontWeight\":\"normal\",\"color\":\"#d0021b\"}},{\"key\":\"0.41283222103654516\",\"type\":\"text\",\"x\":34,\"y\":319,\"text\":\"If you’re new to Next.js, check out the Next.js tutorial.\\n\\nNext.js is maintained by Vercel. You can deploy a Next.js app to any Node.js or serverless hosting, or to your own server. Fully static Next.js apps can be deployed to any static hosting.\",\"customStyles\":{\"borderColor\":\"transparent\",\"width\":630,\"backgroundColor\":\"transparent\"},\"textStyles\":{\"fontSize\":16,\"fontWeight\":\"normal\",\"color\":\"black\"}}]}]"}]
+
+PADRONIZAR:
+
+[X] - Login                 OK
+[X] - Student Home          OK
+[X] - Student Groups        OK
+[X] - Student Mentors       OK
+[X] - Teacher create        OK
+[X] - Teacher groups        OK
+[X] - Teacher Home          OK
+[X] - Teacher whiteboard    OK
