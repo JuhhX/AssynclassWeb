@@ -19,7 +19,7 @@ module.exports = {
         "24" : "24px"
       },
       fontFamily:{
-        princ: 'var(--font-baijamjuree)'
+        fredoka: 'var(--font-fredoka)',
       },
       margin: {
         "1/4" : "25%"

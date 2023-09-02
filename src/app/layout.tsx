@@ -1,13 +1,13 @@
 import './globals.css'
 
-import {Bai_Jamjuree as BaiJamJuree} from 'next/font/google'
+import {Fredoka} from 'next/font/google'
 
 export const metadata = {
   title: 'Assynclass Code',
   description: 'Estude códigos, estude no seu ritmo',
 }
 
-export const baiJamjuree = BaiJamJuree({subsets: ['latin'], weight: '700', variable: "--font-baijamjuree"})
+export const fredoka = Fredoka({subsets: ['latin'], weight: ['400', '700'], variable: "--font-fredoka"})
 
 export default function RootLayout({
   children,
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={baiJamjuree.className}>{children}</body>
+      <body className={fredoka.className + " overflow-hidden"}>{children}</body>
     </html>
   )
 }
