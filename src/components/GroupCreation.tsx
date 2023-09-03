@@ -68,15 +68,12 @@ export default function GroupCreation(){
     }, [studentsName])
 
     return (
-        <form className="h-fit w-3/4 flex flex-col gap-4" onSubmit={create} ref={formRef}>
-            <label htmlFor="groupName" className={`font-bold text-xl text-azul`}>Nome do grupo: </label>
-            <input type="text" name="groupName" id="groupName" className='border-b-2 border-verde p-2 text-azul placeholder:text-azul/75 focus:ring-0' placeholder='Insira o nome do grupo' value={groupName} onChange={(e) => {setGroupName(e.target.value)}} />
+        <form className="h-fit w-full flex flex-col gap-4 pt-8" onSubmit={create} ref={formRef}>
+            <input type="text" name="groupName" id="groupName" className='w-3/4 self-center border-2 border-verde p-4 text-verde text-xl rounded-xl placeholder:text-verde/75 focus:ring-0' placeholder='Nome do grupo' value={groupName} onChange={(e) => {setGroupName(e.target.value)}} />
             
-            <label htmlFor="description" className={`font-bold text-xl text-azul`}>Descrição do grupo: </label>
-            <input type="text" name="description" id="description" className='border-b-2 border-verde p-2 text-azul placeholder:text-azul/75 focus:ring-0' placeholder='Insira uma descrição para o grupo' value={groupDescription} onChange={(e) => {setGroupDescription(e.target.value)}} />
+            <input type="text" name="description" id="description" className='w-3/4 self-center border-2 border-verde p-4 text-verde text-xl rounded-xl placeholder:text-verde/75 focus:ring-0' placeholder='Descrição do grupo' value={groupDescription} onChange={(e) => {setGroupDescription(e.target.value)}} />
             
-            <label htmlFor="integrantes" className={`font-bold text-xl text-azul`}>Integrantes (Separado por vírgulas): </label>
-            <input type="text" value={studentsName} onChange={(e) => {setStudentsName(e.currentTarget.value)}} name="integrantes" id="integrantes" className='border-b-2 border-verde p-2 text-azul placeholder:text-azul/75 focus:ring-0' placeholder='Insira o nome ou código dos participantes' />
+            <input type="text" value={studentsName} onChange={(e) => {setStudentsName(e.currentTarget.value)}} name="integrantes" id="integrantes" className='w-3/4 self-center border-2 border-verde p-4 text-verde text-xl rounded-xl placeholder:text-verde/75 focus:ring-0' placeholder='Nome ou código dos participantes' />
 
             <input type="text" name="teacherID" className="hidden" value={teacherID} onChange={(e) => {setTeacherID(e.currentTarget.value)}}  />
 
@@ -86,7 +83,7 @@ export default function GroupCreation(){
                 })
             }
 
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-4 w-3/4 self-center justify-end">
                 <button type="submit" className='bg-verde rounded-lg p-2 px-4 self-start text-white font-bold text-xl w-fit transition-colors hover:bg-verdesel'>Criar</button>
                 <button type="submit" className='bg-vermelho rounded-lg p-2 px-4 self-start text-white font-bold text-xl w-fit transition-colors'>Cancelar</button>
             </div>

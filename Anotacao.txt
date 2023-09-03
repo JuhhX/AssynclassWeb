@@ -36,3 +36,5 @@ PADRONIZAR:
 [X] - Teacher groups        OK
 [X] - Teacher Home          OK
 [X] - Teacher whiteboard    OK
+
+bg-slate-900

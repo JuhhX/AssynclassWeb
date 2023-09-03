@@ -14,7 +14,7 @@ export default function TeacherCreateContent() {
 
     const [value, setValue] = usePress();
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const [pages, setPages] = useState<ReactNode[] | any>([<FluidContext style={'w-1/2 h-screen select-none self-center bg-white'} key={Math.random()} addButton={value} />]);
+    const [pages, setPages] = useState<ReactNode[] | any>([<FluidContext style={'w-full h-screen select-none self-center bg-white'} key={Math.random()} addButton={value} />]);
     
     const [contentSave, setContentSave] = useState<any[]>([]);
     const [currentPageToSave, setCurrentPageToSave] = useState<number>(0);
@@ -64,7 +64,7 @@ export default function TeacherCreateContent() {
 
     function addNewPage(){
       const key = Math.random();
-      setPages([...pages, <FluidContext currentSave={currentIDtoSave} onlyCopy={!(currentID == teacherID)} id={key+""} linkedToPage={currentPage} getSavedPage={getObject} style={'w-1/2 h-screen select-none self-center bg-white'} active={true} key={key} addButton={value} />])
+      setPages([...pages, <FluidContext currentSave={currentIDtoSave} onlyCopy={!(currentID == teacherID)} id={key+""} linkedToPage={currentPage} getSavedPage={getObject} style={'w-full h-screen select-none self-center bg-white'} active={true} key={key} addButton={value} />])
       setTimeout(() => {
         setCurrentPage(currentPage+1)
       }, 1000)
@@ -185,7 +185,7 @@ export default function TeacherCreateContent() {
   
         let componentsToAdd = content.map((p: any) => {
           const key = Math.random();
-          return <FluidContext currentSave={currentIDtoSave} onlyCopy={!(currentID == teacherID)} toUpload={p.data} id={key+""} linkedToPage={p.page} getSavedPage={getObject} style={`w-1/2 h-screen select-none self-center bg-white ${(p.page == currentPage) ? "flex flex-col" : "hidden"}`} active={(p.page == currentPage) ? true : false} key={key} addButton={value} />
+          return <FluidContext currentSave={currentIDtoSave} onlyCopy={!(currentID == teacherID)} toUpload={p.data} id={key+""} linkedToPage={p.page} getSavedPage={getObject} style={`w-full h-screen select-none self-center bg-white ${(p.page == currentPage) ? "flex flex-col" : "hidden"}`} active={(p.page == currentPage) ? true : false} key={key} addButton={value} />
         })
   
         setPages(componentsToAdd);
@@ -197,10 +197,10 @@ export default function TeacherCreateContent() {
       var pagesNew : any = pages;
       pagesNew = pagesNew.map((context: any, index: number) => {
         if(index == currentPage){
-          return <FluidContext currentSave={currentIDtoSave} id={context.key} linkedToPage={index} getSavedPage={getObject} style={'w-1/2 h-screen select-none self-center bg-white flex flex-col'} active={true} key={context.key} addButton={value} />
+          return <FluidContext currentSave={currentIDtoSave} id={context.key} linkedToPage={index} getSavedPage={getObject} style={'w-full h-screen select-none self-center bg-white flex flex-col'} active={true} key={context.key} addButton={value} />
         }
         else{
-          return <FluidContext currentSave={currentIDtoSave} id={context.key} linkedToPage={index} getSavedPage={getObject} style={'w-1/2 h-screen select-none self-center bg-white hidden'} active={false} key={context.key} addButton={value} />
+          return <FluidContext currentSave={currentIDtoSave} id={context.key} linkedToPage={index} getSavedPage={getObject} style={'w-full h-screen select-none self-center bg-white hidden'} active={false} key={context.key} addButton={value} />
         }
       })
 
@@ -208,18 +208,20 @@ export default function TeacherCreateContent() {
     }, [value, currentPage])
 
     return (
-      <main className="h-screen overflow-auto w-full flex flex-col bg-cinza">
+      <main className="h-screen overflow-auto w-full flex flex-col pr-4">
 
-        <div className="absolute flex flex-col p-4 bg-blue-100 rounded-xl gap-4 mt-2 w-1/4">
-          {(teacherID == currentID) ? <input spellCheck={false} value={name} onChange={(e) => {setName(e.target.value)}} type="text" name="" id="" placeholder="Nome do conteúdo" className="p-2" /> : <p>{name}</p>}
-          {(teacherID == currentID) ? <textarea spellCheck={false} value={description} onChange={(e) => {setDescription(e.target.value)}} name="" id="" cols={30} rows={5} placeholder="Descrição do conteúdo" className="resize-none p-2" ></textarea> : <p>{description}</p>}
+        <div className="absolute left-2 border-2 border-b-4 border-azul flex flex-col p-4 rounded-xl gap-4 mt-2 w-[23%]">
+          {(teacherID == currentID) ? <input spellCheck={false} value={name} onChange={(e) => {setName(e.target.value)}} type="text" name="" id="" placeholder="Nome do conteúdo" className="p-2 border-verde border-2 rounded-xl text-xl text-verde" /> : <p>{name}</p>}
+          {(teacherID == currentID) ? <textarea spellCheck={false} value={description} onChange={(e) => {setDescription(e.target.value)}} name="" id="" cols={30} rows={5} placeholder="Descrição do conteúdo" className="resize-none p-2 border-verde border-2 rounded-xl text-xl text-verde" ></textarea> : <p>{description}</p>}
         </div>
 
-        {
-          pages.map((context : ReactNode) => {
-            return context
-          })
-        }
+        <div className="w-1/2 self-center border-l-2 border-r-2 border-azul">
+          {
+            pages.map((context : ReactNode) => {
+              return context
+            })
+          }
+        </div>
 
         <div className="flex flex-row bg-cinza w-fit p-2 px-4 absolute bottom-4 rounded-xl items-center justify-center gap-4">
           <button className="bg-verde p-2 rounded-xl transition-colors hover:bg-verdesel" onClick={() => {(currentPage > 0) && setCurrentPage(currentPage-1)}}><ChevronLeft size={32} color="white" /></button>

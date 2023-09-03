@@ -1,6 +1,7 @@
 "use client"
 
 import { SideBar } from "@/components/SideBar"
+import { resolveGrade } from "@/lib/general"
 import { getUserName } from "@/lib/user/user"
 import { UserCircle2, Settings, ChevronsRight } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -54,21 +55,6 @@ export default function Home() {
             setTeachers(data)
         })
   }, [student])
-
-  function resolveGrade(grade: string){
-
-    const grades : any = {
-      "ANO_6": "6° ano (Ensino Fundamental II)",
-      "ANO_7": "7° ano (Ensino Fundamental II)",
-      "ANO_8": "8° ano (Ensino Fundamental II)",
-      "ANO_9": "9° ano (Ensino Fundamental II)",
-      "ANO_1": "1° ano (Ensino Médio)",
-      "ANO_2": "2° ano (Ensino Médio)",
-      "ANO_3": "3° ano (Ensino Médio)",
-    }
-
-    return grades[grade];
-  }
 
   return (
     <main className="w-full h-screen flex flex-col pb-4 pr-4">

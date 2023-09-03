@@ -190,16 +190,3 @@ export default function FluidContext(props: FluidContextProps){
         </GlobalContext.Provider>
     );
 }
-
-/**
-<CustomComponent id={1} style={{padding: 4, borderWidth: 2, borderColor:"#4b0082", width: 350, borderRadius: 10}} actionButtons={{backgroundColor: true}}>
-    
-    <div>
-        <p style={{fontWeight: "bold"}}>PORQUE ESCOLHER REACT?</p>
-    </div>
-    <div style={{width: "100%", textAlign: "right", padding: 4}}>
-        <a href="" style={{fontSize: 14}}>Escrito por: Julio</a>
-    </div>
-
-</CustomComponent>
-*/

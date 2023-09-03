@@ -25,7 +25,7 @@ export default function TeacherMentAll(){
     }, [])
 
     return(
-        <div className="h-fit w-3/4 flex flex-col gap-4">
+        <div className="h-fit w-full flex flex-col gap-4">
 
             {
                 requests.map(r => {

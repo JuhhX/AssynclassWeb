@@ -25,11 +25,8 @@ export default function TeacherStudentAll(){
     }, [])
 
     return(
-        <div className="h-fit w-3/4 flex flex-col gap-4">
-            <div>
-                <label htmlFor="studentName" className={`font-bold text-xl text-azul`}>Nome do aluno: </label>
-                <input type="text" onChange={(e) => setSearch(e.currentTarget.value)} value={searchByName} name="studentName" id="studentName" className='border-b-2 border-verde p-2 text-azul placeholder:text-azul/75 focus:ring-0' />
-            </div>
+        <div className="h-fit w-full flex flex-col gap-4">
+            <input type="text" onChange={(e) => setSearch(e.currentTarget.value)} value={searchByName} placeholder="Nome do aluno" name="studentName" id="studentName" className='w-3/4 self-center border-2 border-verde rounded-xl p-2 text-verde text-xl placeholder:text-verde/75 focus:ring-0' />
 
             {
                 students.map(aluno => {
