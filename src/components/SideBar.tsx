@@ -60,7 +60,7 @@ export function SideBar(props: SideBarProps){
                     </>
                     : props.type == "aluno" ?
                     <>
-                        <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'>{(username == null) ? <UserCircle2 color="white" size={34} /> : <img src={username} alt="avatar" className='w-8 h-8 rounded-lg' />} Perfil</a>
+                        <a href="/student/profile" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'>{(username == null) ? <UserCircle2 color="white" size={34} /> : <img src={username} alt="avatar" className='w-8 h-8 rounded-lg' />} Perfil</a>
                         <a href="/student/home" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Home color='#5B61CE' size={34} /> Home</a>
                         <a href="/student/groups" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Users2 color='#5B61CE' size={34} /> Grupos</a>
                         <a href="/student/mentors" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><GraduationCap color='#5B61CE' size={34} /> Mentores</a>

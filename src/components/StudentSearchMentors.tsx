@@ -37,10 +37,10 @@ export default function StudentSearchMentors(){
     }, [currentFilter])
 
     return (
-        <div className="overflow-auto">
-            <div className="flex flex-col w-1/2">
-                <label htmlFor="materia" className="text-lg text-azul">Selecione uma matéria em que precise de mentoria: </label>
-                <select name="materia" id="materia" className="text-lg text-verde" onChange={(value) => {setCurrentFilter(value.currentTarget.value)}}>
+        <div className="overflow-auto ml-8 border-2 border-b-4 border-azul rounded-xl p-4">
+            <div className="flex flex-col w-full">
+                <label htmlFor="materia" className="text-xl text-azul font-semibold">Selecione uma matéria em que precise de mentoria: </label>
+                <select name="materia" id="materia" className="text-lg text-verde p-4 border-2 border-b-4 border-verde rounded-xl" onChange={(value) => {setCurrentFilter(value.currentTarget.value)}}>
                     <option value="-">Ver todos</option>
                     <option value="0">Matémática</option>
                     <option value="1">Língua portuguesa</option>

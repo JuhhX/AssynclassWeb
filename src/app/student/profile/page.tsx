@@ -51,10 +51,25 @@ export default function Home() {
         })
   }, [student])
 
-  return (
-    <main className="w-full h-screen flex flex-col">
+  function resolveGrade(grade: string){
 
-      <div className="w-1/2 flex flex-row self-center border-b-2 border-b-azul mt-16">
+    const grades : any = {
+      "ANO_6": "6° ano (Ensino Fundamental II)",
+      "ANO_7": "7° ano (Ensino Fundamental II)",
+      "ANO_8": "8° ano (Ensino Fundamental II)",
+      "ANO_9": "9° ano (Ensino Fundamental II)",
+      "ANO_1": "1° ano (Ensino Médio)",
+      "ANO_2": "2° ano (Ensino Médio)",
+      "ANO_3": "3° ano (Ensino Médio)",
+    }
+
+    return grades[grade];
+  }
+
+  return (
+    <main className="w-full h-screen flex flex-col pb-4 pr-4">
+
+      <div className="w-1/2 flex flex-row self-center border-2 border-azul border-b-4 mt-16 rounded-xl">
         <div className="w-1/4 h-full justify-center flex flex-col items-center p-4">
           {(student == null) ? <UserCircle2 size={90} className="text-azul" /> : <img src={student.avatarURL} alt="avatar" className='w-14 h-14 rounded-lg self-center' />}
         </div>
@@ -63,10 +78,10 @@ export default function Home() {
           {
             (student != null) &&
             <>
-              <p>{"Nome: " + student.studentName}</p>
-              <p>{"Código: " + student.studentID}</p>
-              <p>{"Série: " + SeriesAlunos[student.studentGrade]}</p>
-              <p>{"RA: " + student.ra}</p>
+              <p><span className="font-semibold mr-2">{"Nome: "}</span>{student.studentName}</p>
+              <p><span className="font-semibold mr-2">{"Código: "}</span>{student.studentID}</p>
+              <p><span className="font-semibold mr-2">{"Série: "}</span>{resolveGrade(SeriesAlunos[student.studentGrade])}</p>
+              <p><span className="font-semibold mr-2">{"RA: "}</span>{student.ra}</p>
             </>
           }
         </div>
@@ -76,20 +91,24 @@ export default function Home() {
       </div>
 
       <div className="w-1/2 flex flex-row self-center justify-around p-4">
-        <button className={`text-xl ${(showContent == 0) ? "text-verde" : "text-azul"}`} onClick={() => setShowContent(0)}>Informações gerais</button>
-        <button className={`text-xl ${(showContent == 1) ? "text-verde" : "text-azul"}`} onClick={() => setShowContent(1)}>Mentores</button>
+        <button className={`text-xl font-semibold ${(showContent == 0) ? "text-verde" : "text-azul"}`} onClick={() => setShowContent(0)}>Informações gerais</button>
+        <button className={`text-xl font-semibold ${(showContent == 1) ? "text-verde" : "text-azul"}`} onClick={() => setShowContent(1)}>Mentores</button>
       </div>
 
-      <div className="w-1/2 flex flex-col self-center">
+      <div className="w-1/2 border-2 border-b-4 border-azul rounded-xl flex flex-col self-center overflow-auto">
         {
           (showContent == 0) ?
             (student != null) ?
-              <div className="p-8">
-                <p className="text-azul text-lg">{"Código de usuário: " + student.studentID}</p>
-                <p className="text-azul text-lg">{"Nome: " + student.studentName}</p>
-                <p className="text-azul text-lg">{"RA: " + student.ra}</p>
-                <p className="text-azul text-lg">{"Data de nascimento: " + student.birthday}</p>
-                <p className="text-azul text-lg">{"Contato: " + student.contact}</p>
+              <div className="p-8 flex flex-col gap-4">
+                <p className="text-azul text-lg"><span className="font-semibold">{"Código de usuário: "}</span>{student.studentID}</p>
+                <hr />
+                <p className="text-azul text-lg"><span className="font-semibold">{"Nome: "}</span>{student.studentName}</p>
+                <hr />
+                <p className="text-azul text-lg"><span className="font-semibold">{"RA: "}</span>{student.ra}</p>
+                <hr />
+                <p className="text-azul text-lg"><span className="font-semibold">{"Data de nascimento: "}</span>{student.birthday}</p>
+                <hr />
+                <p className="text-azul text-lg"><span className="font-semibold">{"Contato: "}</span>{student.contact}</p>
               </div>
               :
               null
@@ -97,7 +116,7 @@ export default function Home() {
             //COMPONENTE
             teachers.map(t => {
               return (
-                <div key={t.teacherID} className="w-full flex flex-row self-center border-b-2 border-b-azul mt-6">
+                <div key={t.teacherID} className="w-full flex flex-row self-center border-b-2 border-b-azul mt-6 cursor-pointer">
                   <div className="w-1/4 h-full justify-center flex flex-col items-center p-4">
                     <img src={t.avatarURL} alt="avatar" className='w-14 h-14 rounded-lg self-center' />
                   </div>

@@ -33,11 +33,11 @@ export default function StudentTeacherContext(){
     }, [])
 
     return (
-        <div className="overflow-auto">
+        <div className="overflow-auto ml-8 border-2 border-b-4 border-azul rounded-xl p-4">
 
-            <div className="flex flex-col w-1/2">
-                <label htmlFor="materia" className="text-lg text-azul">Selecione uma matéria: </label>
-                <select name="materia" id="materia" className="text-lg text-verde" onChange={(value) => {setCurrentFilter(value.currentTarget.value)}}>
+            <div className="flex flex-col w-full">
+                <label htmlFor="materia" className="text-xl text-azul font-semibold">Selecione uma matéria: </label>
+                <select name="materia" id="materia" className="text-lg text-verde border-2 border-b-4 rounded-xl border-verde p-2" onChange={(value) => {setCurrentFilter(value.currentTarget.value)}}>
                     <option value="-">Ver todos</option>
                     <option value="0">Matémática</option>
                     <option value="1">Língua portuguesa</option>
