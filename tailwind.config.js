@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       colors: {
         "azul": "#2E34A6",
+        "azulsel": "#5B61CE",
         "verde": "#37CCA1",
         "verdesel": "#2AC869",
         "cinza": "#E9E2F2",

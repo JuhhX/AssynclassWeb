@@ -7,7 +7,7 @@ export const metadata = {
   description: 'Estude códigos, estude no seu ritmo',
 }
 
-export const fredoka = Fredoka({subsets: ['latin'], weight: ['400', '700'], variable: "--font-fredoka"})
+export const fredoka = Fredoka({subsets: ['latin'], weight: ['400', '600'], variable: "--font-fredoka"})
 
 export default function RootLayout({
   children,
