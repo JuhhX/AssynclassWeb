@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './globals.css'
 
 import {Fredoka} from 'next/font/google'

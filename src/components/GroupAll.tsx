@@ -32,10 +32,9 @@ export default function GroupAll(props: GroupAllProps){
     }, [])
 
     return(
-        <div className="h-fit w-3/4 flex flex-col gap-4">
-            <div>
-                <label htmlFor="studentName" className={`font-bold text-xl text-azul`}>Nome do grupo: </label>
-                <input type="text" onChange={(e) => setSearch(e.currentTarget.value)} value={searchByName} name="studentName" id="studentName" className='border-b-2 border-verde p-2 text-azul placeholder:text-azul/75 focus:ring-0' />
+        <div className="h-fit w-full flex flex-col gap-4 py-4">
+            <div className="flex flex-col w-full">
+                <input type="text" placeholder="Nome do grupo" onChange={(e) => setSearch(e.currentTarget.value)} value={searchByName} name="studentName" id="studentName" className='w-3/4 self-center border-2 border-verde p-2 font-semibold rounded-xl text-verde text-lg placeholder:text-verde/75 focus:ring-0' />
             </div>
 
             {

@@ -4,6 +4,7 @@ import { SideBar } from "@/components/SideBar"
 import { getUserName } from "@/lib/user/user"
 import { UserCircle2, Settings, ChevronsRight } from "lucide-react"
 import { useEffect, useState } from "react"
+import { ColorRing } from "react-loader-spinner"
 
 enum MateriasProf{
   MATEMATICA,
@@ -30,6 +31,8 @@ export default function Home() {
   const [showContent, setShowContent] = useState<number>(0);
   const [teachers, setTeachers] = useState<Teacher[]>([]);
 
+  const [isDataLoaded, setDataLoaded] = useState<boolean>(false);
+
   useEffect(() => {
     getUserName().then(res => {
 
@@ -37,6 +40,7 @@ export default function Home() {
         .then(json => json.json())
         .then(data => {
           setStudent(data)
+          setDataLoaded(true);
         })
 
     })
@@ -69,25 +73,42 @@ export default function Home() {
   return (
     <main className="w-full h-screen flex flex-col pb-4 pr-4">
 
-      <div className="w-1/2 flex flex-row self-center border-2 border-azul border-b-4 mt-16 rounded-xl">
-        <div className="w-1/4 h-full justify-center flex flex-col items-center p-4">
-          {(student == null) ? <UserCircle2 size={90} className="text-azul" /> : <img src={student.avatarURL} alt="avatar" className='w-14 h-14 rounded-lg self-center' />}
-        </div>
+      <div className="w-1/2 flex flex-row self-center border-2 border-azul border-b-4 mt-16 rounded-xl transition duration-500">
 
-        <div className="w-1/2 p-4 text-azul text-lg flex flex-col justify-center">
-          {
-            (student != null) &&
+        {
+          (!isDataLoaded) ?
+            <ColorRing
+              visible={true}
+              height="80"
+              width="80"
+              wrapperStyle={{alignSelf: "center", marginLeft: "45%"}}
+              wrapperClass="blocks-wrapper"
+              colors={['#2E34A6', '#2E34A6', '#2E34A6', '#2E34A6', '#2E34A6']}
+            />
+          :
             <>
-              <p><span className="font-semibold mr-2">{"Nome: "}</span>{student.studentName}</p>
-              <p><span className="font-semibold mr-2">{"Código: "}</span>{student.studentID}</p>
-              <p><span className="font-semibold mr-2">{"Série: "}</span>{resolveGrade(SeriesAlunos[student.studentGrade])}</p>
-              <p><span className="font-semibold mr-2">{"RA: "}</span>{student.ra}</p>
+              <div className="w-1/4 h-full justify-center flex flex-col items-center p-4">
+                {(student == null) ? <UserCircle2 size={90} className="text-azul" /> : <img src={student.avatarURL} alt="avatar" className='w-14 h-14 rounded-lg self-center' />}
+              </div>
+
+              <div className="w-1/2 p-4 text-azul text-lg flex flex-col justify-center">
+                {
+                  (student != null) &&
+                  <>
+                    <p><span className="font-semibold mr-2">{"Nome: "}</span>{student.studentName}</p>
+                    <p><span className="font-semibold mr-2">{"Código: "}</span>{student.studentID}</p>
+                    <p><span className="font-semibold mr-2">{"Série: "}</span>{resolveGrade(SeriesAlunos[student.studentGrade])}</p>
+                    <p><span className="font-semibold mr-2">{"RA: "}</span>{student.ra}</p>
+                  </>
+                }
+              </div>
+              <div className="w-1/4 flex justify-center items-center p-4 text-verde">
+                <Settings size={45} />
+              </div>
             </>
-          }
-        </div>
-        <div className="w-1/4 flex justify-center items-center p-4 text-verde">
-          <Settings size={45} />
-        </div>
+        }
+
+        
       </div>
 
       <div className="w-1/2 flex flex-row self-center justify-around p-4">
@@ -111,7 +132,14 @@ export default function Home() {
                 <p className="text-azul text-lg"><span className="font-semibold">{"Contato: "}</span>{student.contact}</p>
               </div>
               :
-              null
+              <ColorRing
+                visible={true}
+                height="80"
+                width="80"
+                wrapperStyle={{alignSelf: "center"}}
+                wrapperClass="blocks-wrapper"
+                colors={['#2E34A6', '#2E34A6', '#2E34A6', '#2E34A6', '#2E34A6']}
+              />
             :
             //COMPONENTE
             teachers.map(t => {

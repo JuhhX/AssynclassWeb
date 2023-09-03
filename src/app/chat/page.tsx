@@ -8,8 +8,6 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 import Image from 'next/image'
 import logo from '../../assest/logo.png'
 
-import { baiJamjuree } from '@/app/layout'
-
 interface Messages{
     sendedByName: string,
     message: string,
@@ -110,21 +108,19 @@ export default function TeacherChat(){
 
     return(
         <div className="flex flex-row w-full h-screen">
-            <div className={"fixed h-screen flex flex-col py-4 px-4 gap-8 bg-azul left-0 w-1/4 box-border"}>
-                <div className='flex flex-row justify-center items-center gap-6 h-16 box-border'>
-                    <Image src={logo} alt="logo" width={75} height={75} />
-                    <p className={`text-white text-2xl ${baiJamjuree.variable} font-princ`}>Assynclass</p>
-                    <a href='/teacher/home' className={`bg-verde rounded-lg p-2 px-4 text-white hover:bg-verdesel ${baiJamjuree.variable} font-princ`}><Home color='white' size={24} /></a>
+            <div className={"fixed h-3/4 flex flex-col py-4 pl-4 gap-8 left-0 w-1/4 box-border border-2 border-b-4 border-azul rounded-xl self-center rounded-tl-none rounded-bl-none"}>
+                <div className='flex flex-row justify-start items-center gap-6 h-16 box-border'>
+                    <a href='/teacher/home' className={`bg-verde rounded-lg p-2 px-4 text-white font-semibold flex flex-row gap-2 hover:bg-verdesel`}><Home color='white' size={24} /> VOLTAR</a>
                 </div>
                 {(id) && <ChatBar userID={id} userType={type} selectChat={setCurrentChat} />}
             </div>
             <main className='flex flex-col w-3/4 h-screen ml-1/4 relative pt-8 overflow-hidden'>
 
-                <div className='self-center w-3/4 overflow-auto'>
+                <div className='self-center w-full overflow-auto flex flex-col'>
                     {
                         messages.map(m => {
                             return (
-                                <div key={m.msgID} className={`flex flex-row p-8 w-full self-center border-b-2 ${(m.sendedByName == id) ? "border-verde" : "border-azul"} gap-4`}>
+                                <div key={m.msgID} className={`flex flex-row p-8 w-3/4 self-center self-center border-2 border-b-4 rounded-xl ${(m.sendedByName == id) ? "border-verde" : "border-azul"} gap-4`}>
                                     <UserCircle2 size={40} className={`${(m.sendedByName == id) ? "text-verde" : "text-azul"}`} />
                                     <p className={`text-lg ${(m.sendedByName == id) ? "text-verde" : "text-azul"}`}>{m.message}</p>
                                 </div>
@@ -134,8 +130,8 @@ export default function TeacherChat(){
                     <div ref={chatContentRef} className='h-32 w-full' />
                 </div>
 
-                <form onSubmit={(e) => {enviarMensagem(e)}} className='flex flex-row absolute w-full bottom-0 p-4 justify-center items-center gap-2 bg-white'>
-                    <input value={msg} onChange={(e) => setMsg(e.target.value)} type="text" name="message" id="message" placeholder='Digite uma mensagem ...' className={`rounded-xl p-6 h-8 w-3/4 bg-cinza placeholder:text-slate-700 focus:ring-0`} />
+                <form onSubmit={(e) => {enviarMensagem(e)}} className='flex flex-row absolute w-full bottom-0 p-4 justify-center items-center gap-2'>
+                    <input value={msg} onChange={(e) => setMsg(e.target.value)} type="text" name="message" id="message" placeholder='Digite uma mensagem ...' className={`rounded-xl p-6 h-8 w-3/4 border-2 border-b-4 border-azul placeholder:text-slate-700 focus:ring-0`} />
                     <button type='submit'><Send size={32} className='text-azul' /></button>
                 </form>
             </main>
