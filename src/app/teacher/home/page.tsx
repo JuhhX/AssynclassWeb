@@ -3,19 +3,31 @@ import {ChevronsRight} from 'lucide-react'
 
 export default function TeacherHome() {
   return (
-    <main className="h-screen overflow-auto w-full flex flex-col p-8 px-16 gap-8">
-      <h1 className={`text-azul text-3xl`}>Olá professor</h1>
+    <main className="h-screen overflow-auto w-[70%] flex flex-col p-8 px-16 gap-4 scrollbar-thin scrollbar-thumb-azulsel">
+      <h1 className={`text-azul text-3xl font-semibold`}>Olá professor</h1>
 
-      <p className="text-verde text-xl">Vamos ajudar os alunos?</p>
-      <div className="w-1/2 bg-cinza p-4 rounded-lg flex flex-col">
-          <p className="text-azul text-lg">Poste exercícios que possam auxiliar seus alunos no aprendizado utilizando nossas ferramentas</p>
+      <p className="text-verde text-xl font-semibold">Vamos ajudar os alunos?</p>
+      <div className="w-full border-2 border-b-4 border-azul rounded-xl p-4 rounded-lg flex flex-col">
+          <p className="text-azul text-lg">Poste conteúdos que possam ajudar os alunos com suas dificuldades</p>
           <a href="/teacher/create" className="self-end inline-block"><ChevronsRight size={32} className="text-azul" /></a>
       </div>
 
-      <p className="text-verde text-xl">Espalhe conhecimento</p>
-      <div className="w-1/2 bg-cinza p-4 rounded-lg flex flex-col">
+      <p className="text-verde text-xl font-semibold">Jogando e aprendendo</p>
+      <div className="w-full border-2 border-b-4 border-azul rounded-xl p-4 rounded-lg flex flex-col">
+          <p className="text-azul text-lg">Crie perguntas ou mini-games que possam ajudar os alunos à aprender de uma forma dinâmica</p>
+          <a href="" className="self-end inline-block"><ChevronsRight size={32} className="text-azul" /></a>
+      </div>
+
+      <p className="text-verde text-xl font-semibold">Espalhe conhecimento</p>
+      <div className="w-full border-2 border-b-4 border-azul rounded-xl p-4 rounded-lg flex flex-col">
           <p className="text-azul text-lg">Veja os alunos que solicitaram sua mentoria</p>
           <a href="/teacher/groups" className="self-end inline-block"><ChevronsRight size={32} className="text-azul" /></a>
+      </div>
+
+      <p className="text-verde text-xl font-semibold">Como estão seus alunos?</p>
+      <div className="w-full border-2 border-b-4 border-azul rounded-xl p-4 rounded-lg flex flex-col">
+          <p className="text-azul text-lg">Veja os gráficos sobre seus alunos</p>
+          <a href="" className="self-end inline-block"><ChevronsRight size={32} className="text-azul" /></a>
       </div>
 
       <SideBar type="professor" />

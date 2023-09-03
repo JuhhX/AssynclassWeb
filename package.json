@@ -27,6 +27,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/react-color": "^3.0.6"
+    "@types/react-color": "^3.0.6",
+    "tailwind-scrollbar": "^3.0.5"
   }
 }

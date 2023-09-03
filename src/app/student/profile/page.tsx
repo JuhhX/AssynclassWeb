@@ -116,7 +116,7 @@ export default function Home() {
         <button className={`text-xl font-semibold ${(showContent == 1) ? "text-verde" : "text-azul"}`} onClick={() => setShowContent(1)}>Mentores</button>
       </div>
 
-      <div className="w-1/2 border-2 border-b-4 border-azul rounded-xl flex flex-col self-center overflow-auto">
+      <div className="w-1/2 border-2 border-b-4 border-azul rounded-xl flex flex-col self-center overflow-auto scrollbar-thin scrollbar-thumb-azul">
         {
           (showContent == 0) ?
             (student != null) ?
