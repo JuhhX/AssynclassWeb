@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react'
 
-import {UserCircle2, AppWindow, MessagesSquare, BookOpen, AlignJustify, LogOut, Home, GraduationCap, Users2, BarChart, Gamepad2} from 'lucide-react'
+import {UserCircle2, AppWindow, MessagesSquare, BookOpen, AlignJustify, LogOut, Home, GraduationCap, Users2, BarChart, Gamepad2, Moon, SunDim} from 'lucide-react'
 import { getUserName } from '@/lib/user/user'
+
+import { useTheme } from "next-themes";
 
 interface SideBarProps{
     style?: string
@@ -15,6 +17,9 @@ export function SideBar(props: SideBarProps){
 
     const [isOpen, setOpen] = useState<boolean>((!props.closeable) ? true : false);
     const [username, setUsername] = useState<string | null>(null);
+
+    const {theme, setTheme} = useTheme();
+    const [themeType, setThemeType] = useState<boolean>(true)
 
     useEffect(() => {
 
@@ -30,8 +35,15 @@ export function SideBar(props: SideBarProps){
 
     }, [])
 
+    useEffect(() => {
+        if(theme == "light")
+            setThemeType(true);
+        else
+            setThemeType(false);
+    }, [theme])
+
     return(
-        <div className={(props.style == undefined) ? `fixed w-1/4 rounded-3xl rounded-tr-none rounded-br-none border-2 border-b-4 border-azul right-0 ${!isOpen && 'translate-x-3/4'} top-1/2 -translate-y-1/2 h-3/4 flex flex-col py-4 px-4 gap-8 transition duration-500` : props.style}>
+        <div className={(props.style == undefined) ? `fixed w-1/4 rounded-3xl rounded-tr-none rounded-br-none border-2 border-b-4 border-azul right-0 ${!isOpen && 'translate-x-3/4'} top-1/2 -translate-y-1/2 h-3/4 flex flex-col py-4 px-4 gap-8 transition duration-500 dark:shadow-neon-azul` : props.style}>
             {
                 isOpen ?
                 <div className='flex flex-row justify-end items-center h-16 px-4'>
@@ -59,7 +71,7 @@ export function SideBar(props: SideBarProps){
                     </>
                     : props.type == "aluno" ?
                     <>
-                        <a href="/student/profile" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'>{(username == null) ? <UserCircle2 color="white" size={34} /> : <img src={username} alt="avatar" className='w-8 h-8 rounded-lg' />} Perfil</a>
+                        <a href="/student/profile" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'>{(username == null) ? <UserCircle2 color="#5B61CE" size={34} /> : <img src={username} alt="avatar" className='w-8 h-8 rounded-lg' />} Perfil</a>
                         <a href="/student/home" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Home color='#5B61CE' size={34} /> Home</a>
                         <a href="/student/groups" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Users2 color='#5B61CE' size={34} /> Grupos</a>
                         <a href="/student/mentors" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><GraduationCap color='#5B61CE' size={34} /> Mentores</a>
@@ -68,11 +80,19 @@ export function SideBar(props: SideBarProps){
                     </>
                     :
                     <>
-                        <a href="/instituition/profile" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'>{(username == null) ? <UserCircle2 color="white" size={34} /> : <img src={username} alt="avatar" className='w-8 h-8 rounded-lg' />} Perfil</a>
-                        <a href="/instituition/home" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Home color='#5B61CE' size={34} /> Home</a>
-                        <a href="/api/disconnect" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><LogOut color='#5B61CE' size={34} /> Sair</a>
-                    
+                        <a href="/instituition/profile" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'>{(username == null) ? <UserCircle2 color="white" size={34} /> : <img src={username} alt="avatar" className='w-8 h-8 rounded-lg' />} Perfil</a>
+                        <a href="/instituition/home" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Home color='#5B61CE' size={34} /> Home</a>
+                        <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BarChart color='#5B61CE' size={34} /> Gráficos</a>
+                        <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><GraduationCap color='#5B61CE' size={34} /> Alunos</a>
+                        <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Users2 color='#5B61CE' size={34} /> Professores</a>
+                        <a href="/api/disconnect" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><LogOut color='#5B61CE' size={34} /> Sair</a>
                     </>
+                }
+                {
+                    (themeType) ?
+                        <button className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde' onClick={() => {theme == "light" ? setTheme("dark") : setTheme("light")}}><Moon color='#5B61CE' size={34} /> Modo escuro</button>
+                    :
+                        <button className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde' onClick={() => {theme == "light" ? setTheme("dark") : setTheme("light")}}><SunDim color='#5B61CE' size={34} /> Modo claro</button>
                 }
             </nav>
         </div>

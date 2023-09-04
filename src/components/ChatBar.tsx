@@ -38,7 +38,7 @@ export function ChatBar(props: ChatBarProps){
                 (props.userID) &&
                 chats.map(c => {
                     //Importar o icone do sujeito ainda
-                    return <button onClick={() => {props.selectChat(c.secondUser)}} key={c.idChat} className='text-azul text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg cursor-pointer hover:bg-verde'><UserCircle2 color='#2E34A6' size={34} />{c.secondUserName}</button>
+                    return <button onClick={() => {props.selectChat(c.secondUser)}} key={c.idChat} className='text-azul text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg cursor-pointer hover:bg-verde dark:text-azulsel'><UserCircle2 color='#2E34A6' size={34} />{c.secondUserName}</button>
                 })
             }
         </nav>

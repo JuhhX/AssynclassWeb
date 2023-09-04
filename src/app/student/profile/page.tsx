@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <main className="w-full h-screen flex flex-col pb-4 pr-4">
 
-      <div className="w-1/2 flex flex-row self-center border-2 border-azul border-b-4 mt-16 rounded-xl transition duration-500">
+      <div className="w-1/2 flex flex-row self-center border-2 border-azul border-b-4 mt-16 rounded-xl transition duration-500 dark:shadow-neon-azul">
 
         {
           (!isDataLoaded) ?
@@ -81,10 +81,10 @@ export default function Home() {
                 {
                   (student != null) &&
                   <>
-                    <p><span className="font-semibold mr-2">{"Nome: "}</span>{student.studentName}</p>
-                    <p><span className="font-semibold mr-2">{"Código: "}</span>{student.studentID}</p>
-                    <p><span className="font-semibold mr-2">{"Série: "}</span>{resolveGrade(SeriesAlunos[student.studentGrade])}</p>
-                    <p><span className="font-semibold mr-2">{"RA: "}</span>{student.ra}</p>
+                    <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"Nome: "}</span>{student.studentName}</p>
+                    <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"Código: "}</span>{student.studentID}</p>
+                    <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"Série: "}</span>{resolveGrade(SeriesAlunos[student.studentGrade])}</p>
+                    <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"RA: "}</span>{student.ra}</p>
                   </>
                 }
               </div>
@@ -98,24 +98,24 @@ export default function Home() {
       </div>
 
       <div className="w-1/2 flex flex-row self-center justify-around p-4">
-        <button className={`text-xl font-semibold ${(showContent == 0) ? "text-verde" : "text-azul"}`} onClick={() => setShowContent(0)}>Informações gerais</button>
-        <button className={`text-xl font-semibold ${(showContent == 1) ? "text-verde" : "text-azul"}`} onClick={() => setShowContent(1)}>Mentores</button>
+        <button className={`text-xl font-semibold ${(showContent == 0) ? "text-verde" : "text-azul dark:text-azulsel"}`} onClick={() => setShowContent(0)}>Informações gerais</button>
+        <button className={`text-xl font-semibold ${(showContent == 1) ? "text-verde" : "text-azul dark:text-azulsel"}`} onClick={() => setShowContent(1)}>Mentores</button>
       </div>
 
-      <div className="w-1/2 border-2 border-b-4 border-azul rounded-xl flex flex-col self-center overflow-auto scrollbar-thin scrollbar-thumb-azul">
+      <div className="w-1/2 border-2 border-b-4 border-azul rounded-xl flex flex-col self-center overflow-auto scrollbar-thin scrollbar-thumb-azul dark:shadow-neon-azul">
         {
           (showContent == 0) ?
             (student != null) ?
               <div className="p-8 flex flex-col gap-4">
-                <p className="text-azul text-lg"><span className="font-semibold">{"Código de usuário: "}</span>{student.studentID}</p>
+                <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"Código de usuário: "}</span>{student.studentID}</p>
                 <hr />
-                <p className="text-azul text-lg"><span className="font-semibold">{"Nome: "}</span>{student.studentName}</p>
+                <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"Nome: "}</span>{student.studentName}</p>
                 <hr />
-                <p className="text-azul text-lg"><span className="font-semibold">{"RA: "}</span>{student.ra}</p>
+                <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"RA: "}</span>{student.ra}</p>
                 <hr />
-                <p className="text-azul text-lg"><span className="font-semibold">{"Data de nascimento: "}</span>{student.birthday}</p>
+                <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"Data de nascimento: "}</span>{student.birthday}</p>
                 <hr />
-                <p className="text-azul text-lg"><span className="font-semibold">{"Contato: "}</span>{student.contact}</p>
+                <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"Contato: "}</span>{student.contact}</p>
               </div>
               :
               <ColorRing

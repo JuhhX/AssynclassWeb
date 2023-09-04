@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class"],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -24,6 +25,10 @@ module.exports = {
       },
       margin: {
         "1/4" : "25%"
+      },
+      boxShadow: {
+        "neon-verde": "0px 0px 220px 1px rgba(45,255,196,0.35)",
+        "neon-azul": "0px 0px 220px 1px rgb(91, 97, 206, 0.2)"
       }
     },
   },

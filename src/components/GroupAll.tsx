@@ -34,7 +34,7 @@ export default function GroupAll(props: GroupAllProps){
     return(
         <div className="h-fit w-full flex flex-col gap-4 py-4">
             <div className="flex flex-col w-full">
-                <input type="text" placeholder="Nome do grupo" onChange={(e) => setSearch(e.currentTarget.value)} value={searchByName} name="studentName" id="studentName" className='w-3/4 self-center border-2 border-verde p-2 font-semibold rounded-xl text-verde text-lg placeholder:text-verde/75 focus:ring-0' />
+                <input type="text" placeholder="Nome do grupo" onChange={(e) => setSearch(e.currentTarget.value)} value={searchByName} name="studentName" id="studentName" className='w-3/4 self-center border-2 border-verde p-2 font-semibold rounded-xl text-verde text-lg placeholder:text-verde/75 focus:ring-0 dark:shadow-neon-verde' />
             </div>
 
             {

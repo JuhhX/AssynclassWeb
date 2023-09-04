@@ -33,10 +33,10 @@ export default function StudentTeacherContext(){
     }, [])
 
     return (
-        <div className="overflow-auto ml-8 border-2 border-b-4 border-azul rounded-xl p-4">
+        <div className="overflow-auto ml-8 border-2 border-b-4 border-azul rounded-xl p-4 scrollbar-thin scrollbar-thumb-azul dark:shadow-neon-azul">
 
             <div className="flex flex-col w-full">
-                <label htmlFor="materia" className="text-xl text-azul font-semibold">Selecione uma matéria: </label>
+                <label htmlFor="materia" className="text-xl text-azul font-semibold dark:text-azulsel">Selecione uma matéria: </label>
                 <select name="materia" id="materia" className="text-lg text-verde border-2 border-b-4 rounded-xl border-verde p-2" onChange={(value) => {setCurrentFilter(value.currentTarget.value)}}>
                     <option value="-">Ver todos</option>
                     <option value="0">Matémática</option>

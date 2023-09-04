@@ -34,8 +34,8 @@ export default function TeacherMentContainer(props : TeacherMentContainerProps){
         <div className={`${showReq} flex-row w-full p-4 gap-8 items-center text-azul border-b-2 border-azul cursor-pointer`}>
             <img src={props.avatarURL} alt={`Avatar ${props.nomeAluno}`} className="w-10 h-10 rounded-lg" />
             <div className="w-3/5 h-full p-4">
-                <h1>{props.nomeAluno}</h1>
-                <p>{props.serieAluno}</p>
+                <h1 className="dark:text-azulsel">{props.nomeAluno}</h1>
+                <p className="dark:text-azulsel">{props.serieAluno}</p>
             </div>
             <div className="flex flex-row justify-around gap-4">
                 <PlusCircle onClick={() => {sendDecisionRequest(true)}} size={32} color="green" />

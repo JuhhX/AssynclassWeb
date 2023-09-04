@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { InterfaceMode } from '@/components/InterfaceMode'
 import './globals.css'
 
 import {Fredoka} from 'next/font/google'
@@ -17,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={fredoka.className + " overflow-hidden"}>{children}</body>
+      <body className={`${fredoka.className} overflow-hidden transition duration-500 bg-white dark:bg-slate-900`}>
+        <InterfaceMode>
+          {children}
+        </InterfaceMode>
+      </body>
     </html>
   )
 }

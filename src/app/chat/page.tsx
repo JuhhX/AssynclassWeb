@@ -108,7 +108,7 @@ export default function TeacherChat(){
 
     return(
         <div className="flex flex-row w-full h-screen">
-            <div className={"fixed h-3/4 flex flex-col py-4 pl-4 gap-8 left-0 w-1/4 box-border border-2 border-b-4 border-azul rounded-xl self-center rounded-tl-none rounded-bl-none"}>
+            <div className={"fixed h-3/4 flex flex-col py-4 pl-4 gap-8 left-0 w-1/4 box-border border-2 border-b-4 border-azul rounded-xl self-center rounded-tl-none rounded-bl-none dark:shadow-neon-azul"}>
                 <div className='flex flex-row justify-start items-center gap-6 h-16 box-border'>
                     <a href='/teacher/home' className={`bg-verde rounded-lg p-2 px-4 text-white font-semibold flex flex-row gap-2 hover:bg-verdesel`}><Home color='white' size={24} /> VOLTAR</a>
                 </div>
@@ -131,7 +131,7 @@ export default function TeacherChat(){
                 </div>
 
                 <form onSubmit={(e) => {enviarMensagem(e)}} className='flex flex-row absolute w-full bottom-0 p-4 justify-center items-center gap-2'>
-                    <input value={msg} onChange={(e) => setMsg(e.target.value)} type="text" name="message" id="message" placeholder='Digite uma mensagem ...' className={`rounded-xl p-6 h-8 w-3/4 border-2 border-b-4 border-azul placeholder:text-slate-700 focus:ring-0`} />
+                    <input value={msg} onChange={(e) => setMsg(e.target.value)} type="text" name="message" id="message" placeholder='Digite uma mensagem ...' className={`rounded-xl p-6 h-8 w-3/4 border-2 border-b-4 border-azul placeholder:text-slate-700 focus:ring-0 dark:shadow-neon-azul`} />
                     <button type='submit'><Send size={32} className='text-azul' /></button>
                 </form>
             </main>

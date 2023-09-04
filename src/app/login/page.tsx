@@ -13,7 +13,7 @@ export default function Login() {
         <Image src={logo} alt='Assynclass logo' width={175} height={175} className='z-10 w-[175px] h-[175px] absolute top-1/2 -translate-y-3/4 left-10' />
 
         <button className={`absolute right-8 top-8 pointer text-azul font-semibold text-3xl`}>X</button>
-        <a href="/register/teacher" className={`pointer absolute right-8 bottom-8 pointer text-verde border-2 border-b-4 rounded-xl p-2 border-verde font-semibold text-xl`}>CRIAR CONTA</a>
+        <a href="/register/teacher" className={`pointer absolute right-8 bottom-8 pointer text-verde border-2 border-b-4 rounded-xl p-2 border-verde font-semibold text-xl dark:shadow-neon-verde`}>CRIAR CONTA</a>
 
         <div className={`font-princ flex flex-col h-full w-1/2 p-8 justify-center overflow-hidden`}>
             <LoginForm />

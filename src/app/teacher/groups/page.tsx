@@ -59,17 +59,17 @@ export default function TeacherGroups() {
 
     return (
         <main className="h-screen overflow-auto w-full flex flex-col p-8 px-16 gap-8 overflow-hidden">
-            <h1 className={`text-azul text-3xl font-semibold`}>Alunos e grupos</h1>
+            <h1 className={`text-azul text-3xl font-semibold dark:text-azulsel`}>Alunos e grupos</h1>
 
             <div className="w-full h-full flex flex-row gap-8 pb-16">
-                <div className="w-1/5 h-fit border-2 border-b-4 border-azul flex flex-col rounded-xl p-4">
-                    <button onClick={() => setShowInterface(0)} className="text-lg text-azul transition-colors hover:text-verde">Meus alunos</button>
-                    <button onClick={() => setShowInterface(1)} className="text-lg text-azul transition-colors hover:text-verde">Meus grupos</button>
-                    <button onClick={() => setShowInterface(2)} className="text-lg text-azul transition-colors hover:text-verde">Criar grupos</button>
-                    <button onClick={() => setShowInterface(3)} className="text-lg text-azul transition-colors hover:text-verde">Solicitações</button>
+                <div className="w-1/5 h-fit border-2 border-b-4 border-azul flex flex-col rounded-xl p-4 dark:shadow-neon-azul">
+                    <button onClick={() => setShowInterface(0)} className="text-lg text-azul dark:text-azulsel transition-colors hover:text-verde">Meus alunos</button>
+                    <button onClick={() => setShowInterface(1)} className="text-lg text-azul dark:text-azulsel transition-colors hover:text-verde">Meus grupos</button>
+                    <button onClick={() => setShowInterface(2)} className="text-lg text-azul dark:text-azulsel transition-colors hover:text-verde">Criar grupos</button>
+                    <button onClick={() => setShowInterface(3)} className="text-lg text-azul dark:text-azulsel transition-colors hover:text-verde">Solicitações</button>
                 </div>
 
-                <div className="w-1/2 h-full border-2 border-b-4 border-azul rounded-xl scrollbar-thin scrollbar-thumb-azul flex flex-col gap-4 p-4 pb-16 overflow-auto">
+                <div className="w-1/2 h-full border-2 border-b-4 border-azul rounded-xl scrollbar-thin scrollbar-thumb-azul flex flex-col gap-4 p-4 pb-16 overflow-auto dark:shadow-neon-azul">
                     {
                         (showInterface == 0) ? 
                             <TeacherStudentAll />
