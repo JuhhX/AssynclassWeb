@@ -56,7 +56,7 @@ export default function RegisterStudent(){
             </div>
 
             <div className={`flex flex-col h-full w-1/2 p-8 justify-between overflow-auto`}>
-                <button className={`pointer text-azul font-bold self-end text-3xl`}>X</button>
+                <a href='/instituition/home' className={`pointer text-azul font-bold self-end text-3xl`}>X</a>
                 <form ref={formRef} className='flex flex-col w-3/4 self-center gap-4' onSubmit={submitForm}>
 
                     <label htmlFor="nome" className={`font-bold text-xl text-azul`}>Nome: </label>

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import logo from '../../../assest/logo.png'
 
-import { GraduationCap, PlusCircle, School } from 'lucide-react'
+import { Building2, GraduationCap, PlusCircle, School } from 'lucide-react'
 import { FormEvent, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -56,11 +56,12 @@ export default function RegisterTeacher(){
                     <p className={`text-4xl text-white mt-1/2 -translate-y-3/4 border-b-4 border-verde`}>Cadastre-se</p>
                     <a href="/register/teacher" className='flex flex-row p-4 gap-4 text-white text-xl items-center'><GraduationCap size={52} className='text-white rounded-full p-2 bg-verde text-xl' /> Sou professor</a>
                     <a href="/register/school" className='flex flex-row p-4 gap-4 text-white text-xl items-center'><School size={52} className='text-white rounded-full p-2 bg-verde text-xl' /> Sou uma instituição</a>
+                    <a href="/register/company" className='flex flex-row p-4 gap-4 text-white text-xl items-center'><Building2 size={52} className='text-white rounded-full p-2 bg-verde text-xl' /> Sou uma empresa</a>
                 </div>
             </div>
 
             <div className={`flex flex-col h-full w-1/2 p-8 justify-between overflow-auto`}>
-                <button className={`pointer text-azul font-bold self-end text-3xl`}>X</button>
+                <a href='/' className={`pointer text-azul font-bold self-end text-3xl`}>X</a>
                 <form className='flex flex-col w-3/4 self-center gap-4' onSubmit={submitForm}>
                     
                     <label htmlFor="user" className={`font-bold text-xl text-azul`}>Nome: </label>

@@ -10,6 +10,8 @@ import whiteboard_image from "../assest/whiteboard_image.png";
 import icon_dinheiro from "../assest/Icon_dinheiro.jpg";
 
 import { Instagram, Facebook, Youtube, Twitter } from "lucide-react";
+import HomeHeader from "@/components/HomeHeader";
+import TextAndImage from "@/components/TextAndImage";
 
 export default function Home() {
   
@@ -21,23 +23,8 @@ export default function Home() {
 
   return (
     <main className="w-screen h-screen overflow-hidden flex flex-col">
-      <header className="text-azul flex flex-row h-20 text-xl border-b-4 border-azul rounded-b-lg dark:border-azulsel">
-        <div className="w-1/4 p-3 flex flex-row justify-center items-center">
-          <p className="font-bold text-3xl dark:text-azulsel">Assynclass</p>
-        </div>
-
-        <div className="w-1/2 p-3 flex flex-row justify-end items-center gap-6">
-          <button className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Novidades</button>
-          <button className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Para empresas</button>
-          <button className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Sobre nós</button>
-        </div>
-        
-        <div className="w-1/4 p-3 flex flex-row justify-end items-center gap-6 pr-5">
-          <a href="/register/school" className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Cadastro</a>
-          <a href="/login" className="bg-azul p-2 px-5 text-white rounded-xl transition-colors duration-500 hover:bg-verde dark:bg-azulsel">Login</a>
-        </div>
-
-      </header>
+      
+      <HomeHeader />
       
       <section className="overflow-auto w-full h-full flex flex-col scrollbar-thin scrollbar-thumb-azulsel">
         <section className="w-full flex flex-col">
@@ -54,39 +41,22 @@ export default function Home() {
 
           <div className="mt-16 mb-6 h-1 w-4/5 bg-azul self-center text-transparent">A</div>
 
-          <div className="flex flex-row h-96 p-10">
-            <Image src={whiteboard_image} alt="Imagem de demonstração da lousa digital" className="w-1/2" />
-            <div className="w-1/2 h-full flex flex-col gap-6 p-6 text-azul dark:text-azulsel">
-              <h1 className="text-4xl font-bold text-center">Organize o conteúdo</h1>
-              <p className="text-2xl text-center">Você professor pode organizar ou apresentar seu conteúdo de forma dinâmica utilizando a lousa digital.</p>
-              <p className="text-2xl text-center">É possível escrever textos, desenhar, carregar vídeos e muito mais!</p>
-              <button className="text-white bg-azul p-4 rounded-xl text-xl w-1/2 self-center dark:bg-azulsel">Ler mais sobre</button>
-            </div>
-          </div>
+          <TextAndImage title={"Organize o conteúdo"} 
+          text={"Você professor pode organizar ou apresentar seu conteúdo de forma dinâmica utilizando a lousa digital.\n\nÉ possível escrever textos, desenhar, carregar vídeos e muito mais!"} 
+          buttonAction={() => {}} buttonText={"Ler mais sobre"} image={whiteboard_image} textDirection="right"  />
 
           <div className="mt-16 mb-6 h-1 w-4/5 bg-azul self-center text-transparent">A</div>
 
-          <div className="flex flex-row h-96 p-10">
-            <div className="w-1/2 h-full flex flex-col gap-6 p-6 text-azul dark:text-azulsel">
-              <h1 className="text-4xl font-bold text-center">Aprenda enquanto joga</h1>
-              <p className="text-2xl text-center">Jogue minigames baseados nas suas dificuldades e obtenha pontos.</p>
-              <p className="text-2xl text-center">Também é possível criar seus próprios minigames!</p>
-              <button className="text-white bg-azul p-4 rounded-xl text-xl w-1/2 self-center dark:bg-azulsel">Ler mais sobre</button>
-            </div>
-            <Image src={gamification_image} alt="Imagem de demonstração do sistema de gamificação" className="w-1/2" />
-          </div>
+          <TextAndImage 
+          title={"Aprenda enquanto joga"} 
+          text={"Jogue minigames baseados nas suas dificuldades e obtenha pontos.\n\nTambém é possível criar seus próprios minigames!"} 
+          buttonAction={() => {}} buttonText={"Ler mais sobre"} image={gamification_image} textDirection="left"  />
 
           <div className="mt-16 mb-6 h-1 w-4/5 bg-azul self-center text-transparent">A</div>
 
-          <div className="flex flex-row h-96 p-10">
-            <Image src={icon_dinheiro} alt="Imagem de demonstração do sistema de gamificação" className="w-1/2" />
-            <div className="w-1/2 h-full flex flex-col gap-6 p-6 text-azul dark:text-azulsel">
-              <h1 className="text-4xl font-bold text-center">Troque pontos por cupons</h1>
-              <p className="text-2xl text-center">Que tal comprar aquilo que tanto deseja trocando seus pontos por cupons?</p>
-              <p className="text-2xl text-center">Ganhe pontos superando os obstáculos!</p>
-              <button className="text-white bg-azul p-4 rounded-xl text-xl w-1/2 self-center dark:bg-azulsel">Ler mais sobre</button>
-            </div>
-          </div>
+          <TextAndImage title={"Troque pontos por cupons"} 
+          text={"Que tal comprar aquilo que tanto deseja trocando seus pontos por cupons?\n\nGanhe pontos superando os obstáculos!"} 
+          buttonAction={() => {}} buttonText={"Ler mais sobre"} image={icon_dinheiro} textDirection="right"  />
       
           <div className="mt-16 mb-6 h-1 w-4/5 bg-azul self-center text-transparent">A</div>
 

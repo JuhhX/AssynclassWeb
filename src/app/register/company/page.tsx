@@ -8,7 +8,7 @@ import { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 
-export default function RegisterSchool(){
+export default function RegisterCompany(){
     const router = useRouter();
 
     function registerInstituition(event: FormEvent<HTMLFormElement>){
@@ -17,29 +17,30 @@ export default function RegisterSchool(){
         //TRANSFORMA O QUE VEIO DO FORMULÁRIO EM DADOS.
         const data = new FormData(event.currentTarget);
         
-        fetch("http://localhost:3333/register/instituition", {
-            method: "POST",
-            body: JSON.stringify({
-                nome: data.get("nome"),
-                cnpj: data.get("cnpj"),
-                email: data.get("email"),
-                password: data.get("password"),
-                confirmpassword: data.get("confirmpassword"),
-                contato: data.get("contato")
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
-        .then(data => {
+        //CONFIGURAR ROTA PARA EMPRESA
+        // fetch("http://localhost:3333/register/instituition", {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         nome: data.get("nome"),
+        //         cnpj: data.get("cnpj"),
+        //         email: data.get("email"),
+        //         password: data.get("password"),
+        //         confirmpassword: data.get("confirmpassword"),
+        //         contato: data.get("contato")
+        //     }),
+        //     headers: {
+        //         'Content-type': 'application/json; charset=UTF-8',
+        //     }
+        // })
+        // .then(data => {
 
-            if(data.status == 401)
-                alert("Os dados do formulário não foram preenchidos corretamente!");
-            else if(data.status == 200){
-                alert("Você será redirecionado para a tela de login para se conectar ao sistema.")
-                router.push("/login")
-            }
-        })
+        //     if(data.status == 401)
+        //         alert("Os dados do formulário não foram preenchidos corretamente!");
+        //     else if(data.status == 200){
+        //         alert("Você será redirecionado para a tela de login para se conectar ao sistema.")
+        //         router.push("/login")
+        //     }
+        // })
     }
 
     return(
@@ -62,7 +63,7 @@ export default function RegisterSchool(){
                 <form className='flex flex-col w-3/4 self-center gap-4' onSubmit={(e) => registerInstituition(e)}>
                     
                     <label htmlFor="nome" className={`font-bold text-xl text-azul`}>Nome: </label>
-                    <input type="text" name="nome" id="nome" className='border-b-2 border-verde p-2 text-azul placeholder:text-azul/75 focus:ring-0' placeholder='Insira o nome da instituição' />
+                    <input type="text" name="nome" id="nome" className='border-b-2 border-verde p-2 text-azul placeholder:text-azul/75 focus:ring-0' placeholder='Insira o nome da sua empresa' />
                     
                     <label htmlFor="cnpj" className={`font-bold text-xl text-azul`}>CNPJ: </label>
                     <input type="text" name="cnpj" id="cnpj" className='border-b-2 border-verde p-2 text-azul placeholder:text-azul/75 focus:ring-0' placeholder='Insira o cnpj' />

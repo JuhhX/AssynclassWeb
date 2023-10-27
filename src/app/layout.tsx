@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={`${fredoka.className} flex flex-col overflow-hidden transition duration-500 bg-white-background dark:bg-dark-background`}>
+      <body className={`${fredoka.className} flex flex-col overflow-hidden transition duration-500 bg-white-background selection:bg-verde selection:text-white dark:bg-dark-background`}>
         <InterfaceMode>
           {children}
         </InterfaceMode>
