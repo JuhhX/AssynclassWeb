@@ -29,6 +29,10 @@ module.exports = {
       boxShadow: {
         "neon-verde": "0px 0px 220px 1px rgba(45,255,196,0.35)",
         "neon-azul": "0px 0px 220px 1px rgb(91, 97, 206, 0.2)"
+      },
+      backgroundImage: {
+        "white-background": "url('../assest/white_background.jpg')",
+        "dark-background": "url('../assest/dark_background.png')"
       }
     },
   },

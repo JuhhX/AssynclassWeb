@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import logo from '../../../assest/logo.png'
 
-import { baiJamjuree } from '../../layout'
 import { useSearchParams } from 'next/navigation';
 import { FormEvent, useRef, useState } from 'react';
 
@@ -49,14 +48,14 @@ export default function RegisterStudent(){
             <div className="h-full w-1/2 bg-azul border-r-24 border-verde block">
                 <div className='flex flex-row items-center justify-center h-1/4'>
                     <Image src={logo} alt='Assynclass logo' width={175} height={175} />
-                    <h1 className={`${baiJamjuree.variable} font-princ text-white text-4xl `}>Assynclass</h1>
+                    <h1 className={`text-white text-4xl `}>Assynclass</h1>
                 </div>
                 <div className='w-full flex flex-col items-center justify-center h-3/4'>
-                    <p className={`${baiJamjuree.variable} font-princ text-4xl text-white mt-1/2 -translate-y-3/4 border-b-4 border-verde`}>Cadastrar aluno</p>
+                    <p className={`text-4xl text-white mt-1/2 -translate-y-3/4 border-b-4 border-verde`}>Cadastrar aluno</p>
                 </div>
             </div>
 
-            <div className={`${baiJamjuree.variable} font-princ flex flex-col h-full w-1/2 p-8 justify-between overflow-auto`}>
+            <div className={`flex flex-col h-full w-1/2 p-8 justify-between overflow-auto`}>
                 <button className={`pointer text-azul font-bold self-end text-3xl`}>X</button>
                 <form ref={formRef} className='flex flex-col w-3/4 self-center gap-4' onSubmit={submitForm}>
 

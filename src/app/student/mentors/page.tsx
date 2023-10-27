@@ -9,7 +9,7 @@ export default function StudentSearchTeacher() {
     const [showContext, setShowContext] = useState<number>(0);
 
     return (
-        <main className="h-screen overflow-auto w-full flex flex-col p-8 px-16 gap-8 overflow-hidden">
+        <main className="h-screen w-full flex flex-col p-8 px-16 gap-8 overflow-hidden">
             <h1 className={`text-azul text-3xl font-semibold dark:text-azulsel`}>Professores e mentores</h1>
 
             <div className="w-full h-full flex flex-row">

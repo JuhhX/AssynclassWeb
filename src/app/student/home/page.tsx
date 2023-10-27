@@ -24,7 +24,7 @@ export default function StudentHome() {
   }, [])
 
   return (
-    <main className="h-screen overflow-auto w-[70%] flex flex-col p-8 px-20 gap-8 scrollbar-thin scrollbar-thumb-azulsel">
+    <main className="h-screen overflow-auto w-[70%] flex flex-col p-8 px-20 gap-8 scrollbar-thin scrollbar-thumb-azulsel bg-white-background dark:bg-dark-background">
       <h1 className={`text-azul text-3xl font-semibold dark:text-azulsel`}>Olá aluno</h1>
 
       <div className="flex flex-row gap-8">

@@ -51,7 +51,7 @@ export default function InstituitionProfile() {
 
   return (
     <main className="flex flex-col items-center pb-4 pr-4 gap-8">
-      <div className="w-1/2 rounded-xl flex flex-row border-2 border-b-4 border-azul rounded-xl p-4 mt-8 dark:shadow-neon-azul">
+      <div className="w-1/2 rounded-xl flex flex-row border-2 border-b-4 border-azul p-4 mt-8 dark:shadow-neon-azul">
 
         {
           (isDataLoaded) ? 

@@ -3,13 +3,8 @@
 import Image from 'next/image'
 import logo from '../../../assest/logo.png'
 
-import { baiJamjuree } from '../../layout'
-
-import jwt_Decode from "jwt-decode";
-
 import { GraduationCap, School } from 'lucide-react'
 import { FormEvent } from 'react';
-import { setCookie } from '@/lib/auth/auth';
 import { useRouter } from 'next/navigation';
 
 
@@ -52,16 +47,16 @@ export default function RegisterSchool(){
             <div className="h-full w-1/2 bg-azul border-r-24 border-verde block">
                 <div className='flex flex-row items-center justify-center h-1/4'>
                     <Image src={logo} alt='Assynclass logo' width={175} height={175} />
-                    <h1 className={`${baiJamjuree.variable} font-princ text-white text-4xl `}>Assynclass</h1>
+                    <h1 className={`text-white text-4xl `}>Assynclass</h1>
                 </div>
                 <div className='w-full flex flex-col items-center justify-center h-3/4'>
-                    <p className={`${baiJamjuree.variable} font-princ text-4xl text-white mt-1/2 -translate-y-3/4 border-b-4 border-verde`}>Cadastre-se</p>
+                    <p className={`text-4xl text-white mt-1/2 -translate-y-3/4 border-b-4 border-verde`}>Cadastre-se</p>
                     <a href="/register/teacher" className='flex flex-row p-4 gap-4 text-white text-xl items-center'><GraduationCap size={52} className='text-white rounded-full p-2 bg-verde text-xl' /> Sou professor</a>
                     <a href="/register/school" className='flex flex-row p-4 gap-4 text-white text-xl items-center'><School size={52} className='text-white rounded-full p-2 bg-verde text-xl' /> Sou uma instituição</a>
                 </div>
             </div>
 
-            <div className={`${baiJamjuree.variable} font-princ flex flex-col h-full w-1/2 p-8 justify-between overflow-auto`}>
+            <div className={`flex flex-col h-full w-1/2 p-8 justify-between overflow-auto`}>
                 <button className={`pointer text-azul font-bold self-end text-3xl`}>X</button>
                 <form className='flex flex-col w-3/4 self-center gap-4' onSubmit={(e) => registerInstituition(e)}>
                     

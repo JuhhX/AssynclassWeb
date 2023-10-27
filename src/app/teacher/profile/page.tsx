@@ -115,7 +115,7 @@ export default function TeacherProfile() {
                 <button className={`text-xl font-semibold ${(showContent == 1) ? "text-verde" : "text-azul"}`} onClick={() => setShowContent(1)}>Conteúdos</button>
             </div>
 
-            <div className="w-1/2 self-center border-2 border-b-4 border-azul rounded-xl overflow-auto scrollbar-thin scrollbar-thumb-azul">
+            <div className="w-1/2 self-center border-2 border-b-4 border-azul rounded-xl overflow-auto scrollbar-thin scrollbar-thumb-azul flex felx-col p-4">
                 {
                     (showContent == 0) ? 
                         (teacher != null) ? 
@@ -145,15 +145,17 @@ export default function TeacherProfile() {
                         />
                     : 
                         //COMPONENTE
-                        contents.map(c => {
-                            return(
-                                <div key={c.contentID} className="w-full border-b-2 border-b-azul p-4 flex flex-col">
-                                    <h1 className="text-azul text-xl">{c.contentName}</h1>
-                                    <p className="text-verde text-lg">{c.contentDescription}</p>
-                                    <a href={`/teacher/create?teacherID=${c.teacherID}&contentID=${c.contentID}`} className="self-end inline-block"><ChevronsRight size={32} className="text-azul" /></a>
-                                </div>
-                            )
-                        })
+                        (contents.length > 0) ?
+                            contents.map(c => {
+                                return(
+                                    <div key={c.contentID} className="w-full border-b-2 border-b-azul p-4 flex flex-col">
+                                        <h1 className="text-azul text-xl">{c.contentName}</h1>
+                                        <p className="text-verde text-lg">{c.contentDescription}</p>
+                                        <a href={`/teacher/create?teacherID=${c.teacherID}&contentID=${c.contentID}`} className="self-end inline-block"><ChevronsRight size={32} className="text-azul" /></a>
+                                    </div>
+                                )
+                            })
+                        : <h1 className="text-center text-2xl text-azul font-semibold dark:text-azulsel">Este professor ainda não postou um conteúdo 🙁</h1>
                 }
             </div>
 

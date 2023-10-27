@@ -111,7 +111,6 @@ export default function VideoComponent(props: VideoComponentProps){
     }
 
     function loadVideo(){
-
         let videoID = videoURL.replace("https://www.youtube.com/watch?v=", "");
 
         setVideoURLToLoad("https://www.youtube.com/embed/" + videoID)
