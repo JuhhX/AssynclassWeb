@@ -8,7 +8,7 @@ export default function HomeHeader(){
 
         <div className="w-1/2 p-3 flex flex-row justify-end items-center gap-6">
           <button className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Novidades</button>
-          <button className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Docs</button>
+          <a href="/docs/" className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Docs</a>
           <a href="/home/to_companies" className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Para empresas</a>
           <button className="transition-colors duration-500 dark:text-azulsel hover:text-verde">Sobre nós</button>
         </div>

@@ -5,7 +5,8 @@ import decode from 'jwt-decode'
 
 interface UserToken{
     id: string,
-    type: string
+    type: string,
+    //avatar: string
 }
 
 export async function getUserName(){
