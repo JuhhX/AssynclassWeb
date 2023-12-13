@@ -207,6 +207,7 @@ export default function ComponentsDocs(){
                 }
             />
             <p className="text-lg mt-5 text-justify">Ao carregar o jogo, você perceberá que o visual dos componentes mudou. Agora o resposta_aluno tem uma borda, assim como programado no estilo input_style. </p>
+            <p className="text-lg mt-5 text-justify">Clique no link para ver mais comandos que você pode utilizar. <a className="text-verde mt-2" href="https://reactnative.dev/docs/view-style-props">Seja criativo!</a> </p>
 
             <h1 className="text-2xl font-bold mt-8" id="DELETE">DELETE (Deletar)</h1>
             <p className="text-lg mt-5 text-justify">Caso precise, você pode usar o comando "delete" para apagar um componente quando um evento for disparado. Veja a sintaxe: </p>
