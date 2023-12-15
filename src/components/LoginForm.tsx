@@ -62,7 +62,7 @@ export default function LoginForm(){
                 <input type="password" name="password" id="password" className='w-full text-xl border-2 border-verde rounded-lg p-2 text-verde dark:shadow-neon-verde placeholder:text-verde/75 focus:ring-0' placeholder='Senha' />
             </div>
 
-            <button type="submit" className='bg-verde self-center rounded-xl p-2 px-4 self-start text-white font-semibold text-xl w-1/4 transition-colors hover:bg-verdesel'>ENTRAR</button>
+            <button type="submit" className='bg-verde self-center rounded-xl p-2 px-4 text-white font-semibold text-xl w-1/4 transition-colors hover:bg-verdesel'>ENTRAR</button>
 
         </form>
     )

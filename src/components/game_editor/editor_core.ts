@@ -637,7 +637,7 @@ export function setToVariable(params: string, result: number | string | boolean)
 //Seta um valor a uma variável
 export function set(params: string){
     let param_split = params.split(">");
-    
+
     if(param_split.length == 2){
         let value = (param_split[0].includes("var:{")) ? resolveVariable(param_split[0]) : resolveValue(param_split[0]);
         let variable = (param_split[1].includes("var:{")) ? resolveVariable(param_split[1].trim()) : param_split[1].trim();

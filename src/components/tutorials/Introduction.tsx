@@ -10,7 +10,7 @@ export default function Introduction() {
             <h1 className="text-2xl font-bold mt-8"> O que você precisa saber?</h1>
             <p className="text-lg mt-5 text-justify">Para criar um minigames é bom ter um conhecimento em lógica, mas não é obrigatório.</p>
             <p className="text-lg mt-2 text-justify">Você precisará também de um editor de texto. O bloco de notas serve!</p>
-            <p className="text-lg mt-2 text-justify">Você pode também usar o <span className="text-verde underline">editor de minigames</span> (Obs: O editor permite apenas a criação de minigames simples até o momento.)</p>
+            <p className="text-lg mt-2 text-justify">Você pode também usar o <a href="http://localhost:3000/game_editor" className="text-verde underline">editor de minigames</a> (Obs: O editor permite apenas a criação de minigames simples até o momento.)</p>
 
             <h1 className="text-2xl font-bold mt-8" id="1. Primeiros passos"> 1. Primeiros passos</h1>
             <p className="text-lg mt-5 text-justify">Abra o bloco de notas e digite o seguinte comando:</p>

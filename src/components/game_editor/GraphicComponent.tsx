@@ -197,14 +197,25 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
     function resolveConnection(params:string){
         const params_split = params.split(",");
 
-        let targetID : string = (params_split[0].trim().startsWith("var:{")) ? resolveVariable(params_split[0].trim()) : params_split[0].trim()
+        let targetID : string = (params_split[0].trim().startsWith("var:{")) ? resolveVariable(params_split[0].trim()) : params_split[0].trim();
+        let target_anchor: string = (params_split[1].trim().startsWith("var:{")) ? resolveVariable(params_split[1].trim()) : params_split[1].trim();
+        let source_anchor: string = (params_split[2].trim().startsWith("var:{")) ? resolveVariable(params_split[2].trim()) : params_split[2].trim();
+
         if(targetID.startsWith("\""))
             targetID = targetID.trim().slice(1, targetID.length-2);
+        
+        if(target_anchor.startsWith("\""))
+            target_anchor = target_anchor.trim().slice(1, target_anchor.length-2);
+        
+        if(source_anchor.startsWith("\""))
+            source_anchor = source_anchor.trim().slice(1, source_anchor.length-2);
 
+        
+        
         if(params_split.length == 4)
-            setConnections([...connections, { targetId: targetID, targetAnchor: params_split[1].trim(), sourceAnchor: params_split[2].trim(), style: { strokeColor: params_split[3].trim(), strokeWidth: 1 } }])
+            setConnections([...connections, { targetId: targetID, targetAnchor: target_anchor, sourceAnchor: source_anchor, style: { strokeColor: params_split[3].trim(), strokeWidth: 1 } }])
         if(params_split.length == 5)
-            setConnections([...connections, { targetId: targetID, targetAnchor: params_split[1].trim(), sourceAnchor: params_split[2].trim(), style: { strokeColor: params_split[3].trim(), strokeWidth: 1 }, label: <div style={{ fontWeight: 'bold' }}>{params_split[4].trim()}</div> }])
+            setConnections([...connections, { targetId: targetID, targetAnchor: target_anchor, sourceAnchor: source_anchor, style: { strokeColor: params_split[3].trim(), strokeWidth: 1 }, label: <div style={{ fontWeight: 'bold' }}>{params_split[4].trim()}</div> }])
     }
 
     function setLinked(params: string){
