@@ -4,6 +4,8 @@ import Events from "./Events";
 import Styles from "./Styles";
 import Variables from "./Variables";
 import { ChevronsRight } from "lucide-react";
+import { getUserName } from "@/lib/user/user";
+import { useSearchParams } from "next/navigation";
 
 interface ContainerProps{
     load: Function,
@@ -11,6 +13,8 @@ interface ContainerProps{
 }
 
 export default function Container(props: ContainerProps){
+
+    const params = useSearchParams();
 
     const [variables, setVariables] = useState<string[]>([]);
     const [events, setEvents] = useState<string[]>([]);
@@ -22,6 +26,9 @@ export default function Container(props: ContainerProps){
 
     const [isClosed, setIsClosed] = useState<boolean>(false);
 
+    const [showingUpload, showUploadButton] = useState<boolean>(false);
+    const [teacherID, setTeacherID] = useState<string | null>(null);
+
     const downloadRef = useRef<HTMLAnchorElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -29,7 +36,39 @@ export default function Container(props: ContainerProps){
         props.load(getSplited(variables).concat(getSplited(events)).concat(getSplited(styles)).concat(getSplited(componentes)).concat(getSplited(models)))
     }, [variables, events, styles, componentes, models])
 
+    useEffect(() => {
+        getUserName().then(res => {
+            setTeacherID(res.id);
+            showUploadButton((res.type == "1") ? true : false);
+        });
+    }, []);
+
+    useEffect(() => {
+        const template_type = params.get("template");
     
+        if(template_type){
+          fetch(`http://localhost:3333/templates/${template_type}`, {
+            method: "GET"
+          })
+          .then(resp => resp.blob())
+          .then(data => {
+              const reader = new FileReader();
+                reader.onload = () => {
+                    var objects = String(reader.result).split("§§");
+    
+                    setVariables(JSON.parse(objects[0]));
+                    setEvents(JSON.parse(objects[1]));
+                    setStyles(JSON.parse(objects[2]));
+                    setComponents(JSON.parse(objects[3]));
+                    setModels(JSON.parse(objects[4]));
+                };
+    
+                reader.readAsText(data, 'UTF-8');
+          })
+        }
+    
+      }, []);
+
     function getSplited(v: string[]){
         let result: string[] = [];
 
@@ -46,6 +85,29 @@ export default function Container(props: ContainerProps){
 
 
         return result;
+    }
+
+    function saveInServer(){
+        fetch("http://localhost:3333/upload_game", {
+            method: "POST",
+            body: JSON.stringify(
+                {
+                    teacherID,
+                    gameContent: `${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`
+                }
+            ),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        .then(data => {
+
+            if(data.status == 401)
+                alert("Upload não realizado.");
+            else if(data.status == 200){
+                alert("Upload realizado com sucesso.");
+            }
+        })
     }
 
     function save(final: boolean){
@@ -141,6 +203,10 @@ export default function Container(props: ContainerProps){
                 </div>
                 <div className="flex flex-row px-8 gap-4 mt-4 justify-center">
                     <button className="bg-emerald-500 w-1/2 py-4 px-2 rounded-xl font-bold text-white" onClick={() => {mergeFile()}}>Misturar rascunhos</button>
+                    {
+                        (showingUpload) && 
+                        <button className="bg-emerald-500 w-1/2 py-4 px-2 rounded-xl font-bold text-white" onClick={() => {saveInServer()}}>Salvar na conta</button>
+                    }
                 </div>
 
                 <a href="" ref={downloadRef}></a>

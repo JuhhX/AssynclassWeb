@@ -381,6 +381,11 @@ export function deleteComponent(params: string){
         delete globalComponents[params];
 }
 
+export function render(content: string[]){
+    reset();
+    executeScript(content);
+}
+
 export function new_components(params: string){
     let params_split = params.split(",");
     let component_name = params_split[1].trim();

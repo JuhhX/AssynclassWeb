@@ -7,7 +7,6 @@ import { Building2, GraduationCap, School } from 'lucide-react'
 import { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
-
 export default function RegisterCompany(){
     const router = useRouter();
 
@@ -18,29 +17,29 @@ export default function RegisterCompany(){
         const data = new FormData(event.currentTarget);
         
         //CONFIGURAR ROTA PARA EMPRESA
-        // fetch("http://localhost:3333/register/instituition", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         nome: data.get("nome"),
-        //         cnpj: data.get("cnpj"),
-        //         email: data.get("email"),
-        //         password: data.get("password"),
-        //         confirmpassword: data.get("confirmpassword"),
-        //         contato: data.get("contato")
-        //     }),
-        //     headers: {
-        //         'Content-type': 'application/json; charset=UTF-8',
-        //     }
-        // })
-        // .then(data => {
+        fetch("http://localhost:3333/register/company", {
+            method: "POST",
+            body: JSON.stringify({
+                companyName: data.get("nome"),
+                cnpj: data.get("cnpj"),
+                email: data.get("email"),
+                password: data.get("password"),
+                confirmpassword: data.get("confirmpassword"),
+                contato: data.get("contato")
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        .then(data => {
 
-        //     if(data.status == 401)
-        //         alert("Os dados do formulário não foram preenchidos corretamente!");
-        //     else if(data.status == 200){
-        //         alert("Você será redirecionado para a tela de login para se conectar ao sistema.")
-        //         router.push("/login")
-        //     }
-        // })
+            if(data.status == 401)
+                alert("Os dados do formulário não foram preenchidos corretamente!");
+            else if(data.status == 200){
+                alert("Você será redirecionado para a tela de login para se conectar ao sistema.")
+                router.push("/login")
+            }
+        })
     }
 
     return(

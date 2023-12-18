@@ -32,7 +32,7 @@ export default function Context(props: ContextInterface){
         if(requestUpdate != -1){
             setComponentList(useComponents().getComponents());
         }
-    }, [])
+    }, [requestUpdate])
 
     function communication(name: string, event: string){
         setCommunication(

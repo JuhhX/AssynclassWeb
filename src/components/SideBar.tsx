@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import {UserCircle2, AppWindow, MessagesSquare, BookOpen, AlignJustify, LogOut, Home, GraduationCap, Users2, BarChart, Gamepad2, Moon, SunDim, ListChecks, CircleDollarSign} from 'lucide-react'
+import {UserCircle2, AppWindow, MessagesSquare, BookOpen, AlignJustify, LogOut, Home, GraduationCap, Users2, BarChart, Gamepad2, Moon, SunDim, ListChecks, CircleDollarSign, BrainCircuit} from 'lucide-react'
 import { getUserName } from '@/lib/user/user'
 
 import { useTheme } from "next-themes";
@@ -64,8 +64,9 @@ export function SideBar(props: SideBarProps){
                         <a href="/teacher/groups" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Users2 color='#5B61CE' size={34} /> Grupos</a>
                         <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BarChart color='#5B61CE' size={34} /> Gráficos</a>
                         <a href="/teacher/create" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BookOpen color='#5B61CE' size={34} /> Conteúdos</a>
-                        <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Gamepad2 color='#5B61CE' size={34} /> Atividades</a>
+                        <a href="/teacher/activities" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Gamepad2 color='#5B61CE' size={34} /> Atividades</a>
                         <a href="/teacher/whiteboard" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><AppWindow color='#5B61CE' size={34} /> Lousa</a>
+                        <a href="/mind_map" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BrainCircuit color='#5B61CE' size={34} /> Mapas Mentais</a>
                         <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color='#5B61CE' size={34} /> Cupons</a>
                         <a href="/chat" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><MessagesSquare color='#5B61CE' size={34} /> Chat</a>
                         <a href="/api/disconnect" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><LogOut color='#5B61CE' size={34} /> Sair</a>
@@ -76,6 +77,7 @@ export function SideBar(props: SideBarProps){
                         <a href="/student/home" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Home color='#5B61CE' size={34} /> Home</a>
                         <a href="/student/groups" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Users2 color='#5B61CE' size={34} /> Grupos</a>
                         <a href="/student/mentors" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><GraduationCap color='#5B61CE' size={34} /> Mentores</a>
+                        <a href="/mind_map" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BrainCircuit color='#5B61CE' size={34} /> Mapas Mentais</a>
                         <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color='#5B61CE' size={34} /> Cupons</a>
                         <a href="/chat" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><MessagesSquare color='#5B61CE' size={34} /> Chat</a>
                         <a href="/api/disconnect" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><LogOut color='#5B61CE' size={34} /> Sair</a>

@@ -1,12 +1,18 @@
 'use client'
 import Context from "@/components/game_editor/Context";
+import { useSearchParams } from "next/navigation";
 import {useEffect, useState } from "react";
 
-export default function MindMap(){
+export default function Games(){
+    
+    const params = useSearchParams();
     const [loaded, setLoaded] = useState<string[]>([]);
 
-    async function loadMindMap(){
-        fetch("http://localhost:3333/mind_map")
+    async function loadGame(){
+
+        const gameID : string = String(params.get("id"));
+        
+        fetch(`http://localhost:3333/games/${gameID}`)
         .then(res => res.blob())
         .then(data => {
             
@@ -24,7 +30,7 @@ export default function MindMap(){
     }
 
     useEffect(() => {
-        loadMindMap();
+        loadGame();
     }, [])
 
     return(

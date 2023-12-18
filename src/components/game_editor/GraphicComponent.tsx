@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
-import { CommandsInterface, ErrorsList, current_line, deleteComponent, displayError, new_components, readReturn, resolveValue, resolveVariable, set, setText, useEvents, useStyles, variable, verifyCondition } from "./editor_core";
+import { CommandsInterface, ErrorsList, current_line, deleteComponent, displayError, new_components, readReturn, render, resolveValue, resolveVariable, set, setText, useEvents, useStyles, variable, verifyCondition } from "./editor_core";
 import { Communication } from "./Context";
 import { ArcherElement } from 'react-archer';
 
@@ -78,7 +78,8 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
         "if": if_condition,
         "new": new_model,
         "getname": getName,
-        "delete": delete_component
+        "delete": delete_component,
+        "render": render_
     };
 
     useEffect(() => {
@@ -359,6 +360,34 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
 
     }
 
+    function render_(params: string){
+
+        if(params.startsWith("\"") && params.endsWith("\""))
+            params = params.substring(1, params.length - 1);
+
+        let gameID : string = params;
+    
+        fetch(`http://localhost:3333/games/${gameID}`)
+        .then(res => res.blob())
+        .then(data => {
+            const reader = new FileReader();
+            let content_loaded : string[]; 
+
+            reader.onload = () => {
+                const content = String(reader.result);
+                if(content.includes("\r\n"))
+                   content_loaded = content.split("\r\n");
+                else  
+                   content_loaded = content.split("\n");
+
+                render(content_loaded);
+                props.requestUpdate(Math.random());
+            };
+
+            reader.readAsText(data, 'UTF-8');
+        })
+    }
+
     function new_model(params: string) {
         let param_split = params.split("=>")
         let names = param_split[0].trim().split(",");
@@ -561,13 +590,14 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
         <Draggable ref={dRef} defaultPosition={offPosition} position={offPosition} positionOffset={{ x: 0, y: 0 }} onStop={() => {verifyIntersection(); props.requestUpdate(Math.random());}} disabled={(typeof properties.canmove == "boolean") ? !properties.canmove : false}>
 
 
-            <div className={`absolute ${resolveVisibility()}`} onClick={() => { executeClick() }} onMouseOver={() => { executeOnMouseOver() }} onMouseOut={() => { executeOnMouseOut() }} style={styles}>
+            <div className={`absolute ${resolveVisibility()} break-words`} onClick={() => { executeClick() }} onMouseOver={() => { executeOnMouseOver() }} onMouseOut={() => { executeOnMouseOut() }} style={styles}>
                 <ArcherElement id={props.name} relations={connections}>
                     <div className="w-full h-full">
 
                         {
                             (typeof properties.text == "string" && properties.text != undefined) ?
-                                <p className="whitespace-pre">{resolveText(properties.text.trim())}</p>
+                                // <p className="whitespace-pre">{resolveText(properties.text.trim())}</p>
+                                <p className="">{resolveText(properties.text.trim())}</p>
                             : (typeof properties.imageurl == "string" && properties.imageurl != undefined) ?
                                 <img src={properties.imageurl.slice(1, properties.imageurl.length - 1)} />
                             : (typeof properties.input == "boolean" && properties.input) ?

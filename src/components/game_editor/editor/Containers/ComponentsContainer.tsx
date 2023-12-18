@@ -81,6 +81,7 @@ export default function ComponentsContainer(props: ComponentsContainerProps){
     function addFunction(){
         setProperties([...properties, currentID]);
         setCurrentID(currentID+1);
+        setIsOpen(true);
     }
 
     function deleteFunction(){

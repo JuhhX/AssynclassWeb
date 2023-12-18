@@ -72,7 +72,7 @@ export default function TeacherProfile() {
     return (
         <main className="h-screen w-full flex flex-col p-8 gap-8">
 
-            <div className="w-1/2 flex justify-between border-b-2 border-b-azul p-4 border-2 border-b-4 border-azul rounded-xl self-center">
+            <div className="w-1/2 flex justify-between border-b-azul p-4 border-2 border-b-4 border-azul rounded-xl self-center">
 
                 {
                     (isDataLoaded) ? 

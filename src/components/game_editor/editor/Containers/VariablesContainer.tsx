@@ -29,17 +29,21 @@ export default function VariablesContainer(props: VariablesContainerProps){
     function exportData(){
 
         const resolvedValue = resolveValue(value);
+        console.log("A: " + value);
 
-        if(typeof resolvedValue == "string")
+        if(typeof resolvedValue == "string"){
             return `var: ${name} = "${resolveValue(value)}"`
+        }
         return `var: ${name} = ${resolveValue(value)}`
     }
 
     function recoverData(){
         let split_values = props.data.split("=");
-        
-        if(split_values[1].startsWith("\"") && split_values[1].endsWith("\""))
+        split_values[1] = split_values[1].trim();
+
+        if(split_values[1].startsWith("\"") && split_values[1].endsWith("\"")){
             split_values[1] = split_values[1].slice(1, split_values[1].length-1)
+        }
         
         setName(split_values[0].replace("var: ", "").trim());
         setValue(split_values[1].trim())
