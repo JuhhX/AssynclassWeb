@@ -1,7 +1,7 @@
 'use client'
 import Context from "@/components/game_editor/Context";
 import { useRef, useState } from "react";
-import { ArrowUpFromLine, RotateCw, Download } from "lucide-react";
+import { ArrowUpFromLine, RotateCw, Download, HelpCircle } from "lucide-react";
 import Container from "@/components/game_editor/editor/Container";
 
 export default function GameEditor(){
@@ -46,6 +46,7 @@ export default function GameEditor(){
           <button className="absolute bottom-2 left-2 bg-azul p-3 rounded-full transition-colors hover:bg-verde" onClick={() => openFile()}><ArrowUpFromLine color="white" /></button>
           <button className="absolute bottom-2 left-16 bg-azul p-3 rounded-full transition-colors hover:bg-verde" onClick={() => {window.location.reload()}}><RotateCw color="white" /></button>
           <button className="absolute bottom-16 left-2 bg-azul p-3 rounded-full transition-colors hover:bg-verde" onClick={() => {setReqDownload(Math.random())}}><Download color="white" /></button>
+          <button className="absolute bottom-16 left-16 bg-azul p-3 rounded-full transition-colors hover:bg-verde" onClick={() => {window.open("/docs", "_blank")}}><HelpCircle color="white" /></button>
 
           <Container load={setLoaded} requestDownload={reqDownload} />
       </div>

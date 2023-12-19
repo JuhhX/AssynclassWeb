@@ -29,7 +29,6 @@ export default function VariablesContainer(props: VariablesContainerProps){
     function exportData(){
 
         const resolvedValue = resolveValue(value);
-        console.log("A: " + value);
 
         if(typeof resolvedValue == "string"){
             return `var: ${name} = "${resolveValue(value)}"`

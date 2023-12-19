@@ -6,6 +6,7 @@ import Variables from "./Variables";
 import { ChevronsRight } from "lucide-react";
 import { getUserName } from "@/lib/user/user";
 import { useSearchParams } from "next/navigation";
+import RenderStack from "./RenderStack";
 
 interface ContainerProps{
     load: Function,
@@ -21,6 +22,7 @@ export default function Container(props: ContainerProps){
     const [styles, setStyles] = useState<string[]>([]);
     const [componentes, setComponents] = useState<string[]>([]);
     const [models, setModels] = useState<string[]>([]);
+    const [renderStack, setRenderStack] = useState<string[]>([]);
 
     const [isMerge, setMerge] = useState<boolean>(false);
 
@@ -93,7 +95,7 @@ export default function Container(props: ContainerProps){
             body: JSON.stringify(
                 {
                     teacherID,
-                    gameContent: `${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`
+                    gameContent: `${getSplited(renderStack).join("\n")}\n\n${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`
                 }
             ),
             headers: {
@@ -118,11 +120,11 @@ export default function Container(props: ContainerProps){
             let dataStr = "";
 
             if(!final){
-                dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(`${JSON.stringify(variables)}§§${JSON.stringify(events)}§§${JSON.stringify(styles)}§§${JSON.stringify(componentes)}§§${JSON.stringify(models)}`);
+                dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(`${JSON.stringify(renderStack)}§§${JSON.stringify(variables)}§§${JSON.stringify(events)}§§${JSON.stringify(styles)}§§${JSON.stringify(componentes)}§§${JSON.stringify(models)}`);
                 filename += ".txt";
             }
             else{
-                dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(`${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`);
+                dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(`${getSplited(renderStack).join("\n")}\n\n${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`);
                 filename += ".asl";
             }
             downloadRef.current.setAttribute("href", dataStr);
@@ -190,12 +192,13 @@ export default function Container(props: ContainerProps){
     return(
         <div className={`absolute right-0 transition-transform duration-300 ${(isClosed) ? "translate-x-[90%]" : ""} w-1/3 h-screen`}>
             <div className={`absolute cursor-pointer top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 z-10 bg-azul p-3 rounded-full transition-all duration-500 ${(isClosed) ? "rotate-180" : ""} hover:bg-verde`} onClick={() => setIsClosed(!isClosed)}><ChevronsRight color="white" size={32} /></div>
-            <div className="h-full bg-white border-2 border-b-4 border-azul rounded-xl p-4 pb-8 pt-20 flex flex-col overflow-auto gap-4 scrollbar-thin scrollbar-track-azul">
+            <div className="h-full bg-white border-2 border-b-4 border-azul rounded-xl p-4 pb-8 pt-10 flex flex-col overflow-auto gap-4 scrollbar-thin scrollbar-track-azul">
 
                 <Variables set={setVariables} data={variables} />
                 <Events set={setEvents} data={events} />
                 <Styles set={setStyles} data={styles} />
                 <Components model={false} set={setComponents} data={componentes} />
+                <RenderStack set={setRenderStack} data={renderStack} />
 
                 <div className="flex flex-row px-8 gap-4 mt-4 justify-center">
                     <button className="bg-emerald-500 w-1/2 py-4 px-2 rounded-xl font-bold text-white" onClick={() => {save(false)}}>Salvar rascunho</button>

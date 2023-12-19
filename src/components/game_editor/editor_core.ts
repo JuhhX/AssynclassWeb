@@ -25,6 +25,7 @@ const commands : CommandsInterface = {
     "set": set,
     "concat": concat,
     "event": events,
+    "renderstack": renderStack,
     "loop": loop,
     "if": if_condition,
     "call": call,
@@ -43,6 +44,9 @@ let globalComponents : EventsInterface = {};
 let globalEvents : EventsInterface = {};
 let globalStyles : EventsInterface = {};
 let globalModels : EventsInterface = {};
+
+let globalRenderStack : EventsInterface | null = null;
+let renderStackPointer : number = -1;
 
 export function useVariables(){
 
@@ -93,6 +97,59 @@ export function useStyles(){
     return {getStyles, getStyleByName};
 }
 
+export function useRenderStack(){
+
+    function getRenderStack(){
+        return globalRenderStack;
+    }
+
+    function getRenderStackPointer(){
+        return renderStackPointer;
+    }
+
+    function nextRender(){
+        if(globalRenderStack){
+            let key = Object.keys(globalRenderStack)[0];
+
+            if(renderStackPointer < globalRenderStack[key].length)
+                renderStackPointer += 1;
+
+            return globalRenderStack[key][renderStackPointer];
+        }
+
+        return "";
+    }
+
+    function backRender(){
+        if(globalRenderStack){
+            if(renderStackPointer > -1){
+                let key = Object.keys(globalRenderStack)[0];
+                renderStackPointer -= 1;
+                
+                return globalRenderStack[key][renderStackPointer];
+            }
+        }
+
+        return "";
+    }
+
+    function setRenderStackPointer(pointer: number){
+        if(globalRenderStack){
+            let key = Object.keys(globalRenderStack)[0];
+            
+            if(pointer < 0 || pointer > globalRenderStack[key].length)
+                return globalRenderStack[key][0];
+        
+            renderStackPointer = pointer;
+            return globalRenderStack[key][pointer];
+        }
+
+        return "";
+    }
+
+    return {getRenderStack, getRenderStackPointer, nextRender, backRender, setRenderStackPointer};
+}
+
 export function reset(){
     globalVariables = {};
     globalComponents = {};
@@ -106,6 +163,7 @@ export enum ErrorsList {
     MAX_PARAMETERS_RANDOM = `ERROR: This function allows only two parameters, minimum and maximum:\nrandom: min,max`,
     MAX_PARAMETERS_RANDOMF = `ERROR: This function allows only two parameters, minimum and maximum:\nrandomf: min,max`,
     UNSTOPPABLE_EVENT = `ERROR: Unstoppable event\nAdd end_event`,
+    UNSTOPPABLE_RENDER_STACK = `ERROR: Unstoppable render stack\nAdd end_render_stack`,
     IF_MISSING_PARAMETERS = `ERROR: Missing parameters\nif: condition => event`,
     EVENT_NOT_DEFINED = `ERROR: Event not defined`,
     SET_MISSING_PARAMETERS = `ERROR: Missing parameter:\nset: value > variable`,
@@ -358,6 +416,28 @@ export function events(params: string){
         }
         globalEvents[event_name] = functions;
     }
+}
+
+export function renderStack(params: string){
+
+    if (!globalRenderStack){
+        let stack_name = params;
+        let renders : string[] = [];
+
+        globalRenderStack = {};
+    
+        if(!(loaded_code.includes("end_render_stack", current_line)))
+            displayError(ErrorsList.UNSTOPPABLE_RENDER_STACK, current_line, null);
+        else{
+            current_line++;
+            while(loaded_code[current_line].toLowerCase() != "end_render_stack"){
+                renders.push(loaded_code[current_line].trim());
+                current_line++;
+            }
+            globalRenderStack[stack_name] = renders;
+        }
+    }
+
 }
 
 export function components(params: string){

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
-import { CommandsInterface, ErrorsList, current_line, deleteComponent, displayError, new_components, readReturn, render, resolveValue, resolveVariable, set, setText, useEvents, useStyles, variable, verifyCondition } from "./editor_core";
+import { CommandsInterface, ErrorsList, current_line, deleteComponent, displayError, new_components, readReturn, render, resolveValue, resolveVariable, set, setText, useEvents, useRenderStack, useStyles, variable, verifyCondition } from "./editor_core";
 import { Communication } from "./Context";
 import { ArcherElement } from 'react-archer';
 
@@ -56,6 +56,8 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
 
     const { getEventByName } = useEvents();
     const { getStyleByName } = useStyles();
+
+    const renderStack = useRenderStack();
 
     const self_commands: CommandsInterface = {
         "text": setValue,
@@ -361,12 +363,36 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
     }
 
     function render_(params: string){
+        let gameID : string = "";
 
         if(params.startsWith("\"") && params.endsWith("\""))
             params = params.substring(1, params.length - 1);
 
-        let gameID : string = params;
-    
+        if(renderStack.getRenderStack()){
+            
+            if(params == "next" || params == "")
+                gameID = renderStack.nextRender();
+            else if(params == "back")
+                gameID = renderStack.backRender();
+            else if(params.startsWith(">")){
+                params = params.substring(1, params.length);
+                let pointer_value : number = (params.trim().startsWith("var:{")) ? resolveVariable(params.trim()) : resolveValue(params.trim());
+                gameID = renderStack.setRenderStackPointer(pointer_value);
+            }
+            else
+                gameID = renderStack.nextRender();
+
+            if(gameID)
+                gameID = gameID.substring(1, gameID.length-1);
+            else{
+                alert("Você finalizou as atividades!");
+                window.location.href = "/teacher/activities"
+            } 
+        }
+        else
+            gameID = params;
+        
+
         fetch(`http://localhost:3333/games/${gameID}`)
         .then(res => res.blob())
         .then(data => {
