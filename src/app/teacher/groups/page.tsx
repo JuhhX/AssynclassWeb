@@ -15,6 +15,7 @@ export default function TeacherGroups() {
     const [currentGroup, setCurrentGroup] = useState<string>("");
     const [allGroups, setAllGroups] = useState<any>();
     const [contents, setContents] = useState<Content[]>();
+    const [games, setGames] = useState<GameContent[]>();
     const [atr, setAtr] = useState<boolean>(false);
 
     useEffect(() => {
@@ -23,7 +24,14 @@ export default function TeacherGroups() {
             .then(json => json.json())
             .then(data => {
                 setContents(data);
-            })
+            });
+
+            fetch(`http://localhost:3333/teacher/${res.id}/games`)
+            .then(json => json.json())
+            .then(data => {
+                setGames(data);
+            });
+
         })
     }, [])
 
@@ -36,29 +44,46 @@ export default function TeacherGroups() {
         setAllGroups(groups);
     }   
 
-    function assignContent(idContent: string){
+    function assignContent(idContent: string, contentType: number){
 
         const groups = allGroups.map((g: any) => {
             if(g.groupID == currentGroup)
                 return g.studentID
         }).filter((g: any) => g !== undefined)[0];
 
-        fetch(`http://localhost:3333/sendContent`, {
-            method: "POST",
-            body: JSON.stringify({
-                idContent: idContent,
-                toStudents: groups
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
+        if(contentType == 0){
+            fetch(`http://localhost:3333/sendContent`, {
+                method: "POST",
+                body: JSON.stringify({
+                    idContent: idContent,
+                    toStudents: groups
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            })
+    
+            alert("Conteúdo enviado para o grupo! 😃");
+        }
+        else{
+            fetch(`http://localhost:3333/sendGame`, {
+                method: "POST",
+                body: JSON.stringify({
+                    gameID: idContent,
+                    toStudents: groups
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            })
+    
+            alert("Atividade enviada para o grupo! 😃");
 
-        alert("Conteúdo enviado para o grupo! 😃");
+        }
     }
 
     return (
-        <main className="h-screen overflow-auto w-full flex flex-col p-8 px-16 gap-8 overflow-hidden">
+        <main className="h-screen overflow-auto w-full flex flex-col p-8 px-16 gap-8 ">
             <h1 className={`text-azul text-3xl font-semibold dark:text-azulsel`}>Alunos e grupos</h1>
 
             <div className="w-full h-full flex flex-row gap-8 pb-16">
@@ -89,12 +114,22 @@ export default function TeacherGroups() {
                 <div className="absolute top-0 left-0 w-full h-screen bg-zinc-950/50 flex flex-col justify-center">
                     <div className="bg-white w-1/2 h-3/4 rounded-xl self-center">
                         <div className="w-full h-3/4 p-4 flex flex-col gap-4">
-                            <h1 className={`text-azul text-3xl`}>Atribuir conteúdo</h1>
+                            <h1 className={`text-azul font-bold text-2xl`}>Atribuir conteúdo</h1>
                             {
-                                (contents != undefined) &&
-                                contents.map((c) => {
-                                    return <AtrContent key={c.contentID} idContent={c.contentID} contentName={c.contentName} contentDescription={c.contentDescription} assign={assignContent} />
-                                })
+                                (contents != undefined && contents.length > 0) ?
+                                    contents.map((c) => {
+                                        return <AtrContent key={c.contentID} idContent={String(c.contentID)} contentName={c.contentName} contentDescription={c.contentDescription} assign={assignContent} contentType={0} />
+                                    })
+                                : <h1 className="text-2xl text-azul dark:text-azulsel">Você ainda não criou um conteúdo 🙁</h1>
+                            }
+
+                            <h1 className={`text-azul font-bold text-2xl mt-4`}>Atribuir atividades/jogos</h1>
+                            {
+                                (games != undefined && games.length > 0) ?
+                                    games.map((g) => {
+                                        return <AtrContent key={g.gameID} idContent={g.gameID} contentName={g.gameName} contentDescription={g.gameDescription} assign={assignContent} contentType={1} />
+                                    })
+                                : <h1 className="text-2xl text-azul dark:text-azulsel">Você ainda não criou um conteúdo 🙁</h1>
                             }
                         </div>
                         <div className="w-full h-1/4 flex flex-row justify-end p-4 pt-10 gap-4">

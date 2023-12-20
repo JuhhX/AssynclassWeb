@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
-import { CommandsInterface, ErrorsList, current_line, deleteComponent, displayError, new_components, readReturn, render, resolveValue, resolveVariable, set, setText, useEvents, useRenderStack, useStyles, variable, verifyCondition } from "./editor_core";
+import { CommandsInterface, ErrorsList, current_line, deleteComponent, displayError, new_components, readReturn, render, resolveValue, resolveVariable, set, setText, useData, useEvents, useRenderStack, useStyles, variable, verifyCondition } from "./editor_core";
 import { Communication } from "./Context";
 import { ArcherElement } from 'react-archer';
+import { getUserName } from "@/lib/user/user";
+import { useSearchParams } from "next/navigation";
 
 interface GraphicComponentInterface {
     name: string,
@@ -23,6 +25,7 @@ interface Position {
 
 export default function GraphicComponent(props: GraphicComponentInterface) {
 
+    const params = useSearchParams();
     const dRef = useRef<any>();
 
     const [properties, setProperties] = useState<PropertiesInterface>(
@@ -81,7 +84,8 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
         "new": new_model,
         "getname": getName,
         "delete": delete_component,
-        "render": render_
+        "render": render_,
+        "points": points
     };
 
     useEffect(() => {
@@ -412,6 +416,46 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
 
             reader.readAsText(data, 'UTF-8');
         })
+    }
+
+    function points(params: string){
+        let points_obtained : number = (params.trim().startsWith("var:{")) ? resolveVariable(params.trim()) : resolveValue(params.trim());
+
+        if(points_obtained > 100)
+            points_obtained = 100;
+        else if(points_obtained < 0)
+            points_obtained = 10;
+
+        getUserName().then(resp => {
+            fetch(`http://localhost:3333/student/${resp.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    points: points_obtained
+                })
+            }).then(resp => {
+                if(resp.status == 200)
+                    alert(`Você ganhou ${points_obtained}`);
+            })
+        });
+
+        let ownerID = useData().getOwner();
+
+        if(ownerID.startsWith("\"") && ownerID.endsWith("\""))
+            ownerID = ownerID.substring(1, ownerID.length - 1);
+
+        fetch(`http://localhost:3333/teacher/${ownerID}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                points: points_obtained/2
+            })
+        })
+
     }
 
     function new_model(params: string) {

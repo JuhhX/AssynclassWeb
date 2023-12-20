@@ -31,6 +31,9 @@ export default function Container(props: ContainerProps){
     const [showingUpload, showUploadButton] = useState<boolean>(false);
     const [teacherID, setTeacherID] = useState<string | null>(null);
 
+    const [name, setName] = useState<string>("");
+    const [description, setDescription] = useState<string>("");
+
     const downloadRef = useRef<HTMLAnchorElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -95,7 +98,9 @@ export default function Container(props: ContainerProps){
             body: JSON.stringify(
                 {
                     teacherID,
-                    gameContent: `${getSplited(renderStack).join("\n")}\n\n${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`
+                    gameContent: `${getSplited(renderStack).join("\n")}\n\n${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`,
+                    gameName: name,
+                    gameDescription: description
                 }
             ),
             headers: {
@@ -193,6 +198,9 @@ export default function Container(props: ContainerProps){
         <div className={`absolute right-0 transition-transform duration-300 ${(isClosed) ? "translate-x-[90%]" : ""} w-1/3 h-screen`}>
             <div className={`absolute cursor-pointer top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 z-10 bg-azul p-3 rounded-full transition-all duration-500 ${(isClosed) ? "rotate-180" : ""} hover:bg-verde`} onClick={() => setIsClosed(!isClosed)}><ChevronsRight color="white" size={32} /></div>
             <div className="h-full bg-white border-2 border-b-4 border-azul rounded-xl p-4 pb-8 pt-10 flex flex-col overflow-auto gap-4 scrollbar-thin scrollbar-track-azul">
+
+                <input type="text" className="w-4/5 p-2 rounded-xl border-slate-400 border-2 self-center" placeholder="Nome" value={name} onChange={(e) => {setName(e.currentTarget.value)}} />
+                <input type="text" className="w-4/5 p-2 rounded-xl border-slate-400 border-2 self-center mb-4" placeholder="Descrição" value={description} onChange={(e) => {setDescription(e.currentTarget.value)}} />
 
                 <Variables set={setVariables} data={variables} />
                 <Events set={setEvents} data={events} />

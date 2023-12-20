@@ -6,7 +6,8 @@ interface student{
     teacherID: number[],
     studentGrade: SeriesAlunos,
     birthday: string,
-    contact: string
+    contact: string,
+    points: number
 }
 
 interface Teacher{
@@ -17,7 +18,8 @@ interface Teacher{
     grades: SeriesAlunos[],
     isMentor: boolean,
     cpf: string,
-    inst: string[]
+    inst: string[],
+    points: number
 }
 
 interface Institution{
@@ -26,7 +28,8 @@ interface Institution{
     avatarURL: string,
     cnpj: string,
     email: string,
-    contact: string
+    contact: string,
+    points: number
 }
 
 enum MateriasProf{
@@ -76,5 +79,14 @@ interface Content{
     contentDescription: string,
     teacherID: string,
     content: string,
+    toStudent: number[]
+}
+
+interface GameContent{
+    gameID: string,
+    gameName: string,
+    gameDescription: string,
+    teacherID: string,
+    gameContent: string,
     toStudent: number[]
 }

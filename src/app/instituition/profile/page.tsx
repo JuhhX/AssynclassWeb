@@ -66,6 +66,7 @@ export default function InstituitionProfile() {
                   <>
                     <p className="text-lg text-azul dark:text-azulsel"><span className="font-semibold mr-2">{"Nome: "}</span>{instituition.instituitionName}</p>
                     <p className="text-lg text-azul dark:text-azulsel"><span className="font-semibold mr-2">{"Código: "}</span>{instituition.instituitionID}</p>
+                    <p className="text-lg text-azul dark:text-azulsel"><span className="font-semibold mr-2">{"Pontos: "}</span>{instituition.points}</p>
                   </>
                 }
               </div>
@@ -105,6 +106,8 @@ export default function InstituitionProfile() {
                         <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold mr-2">{"Email: "}</span>{instituition.email}</p>
                         <hr />
                         <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold mr-2">{"Contato: "}</span>{instituition.contact}</p>
+                        <hr />
+                        <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold mr-2">{"Pontos: "}</span>{instituition.points}</p>
                     </div>
                 : 
                 <ColorRing

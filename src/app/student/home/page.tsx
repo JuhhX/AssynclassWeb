@@ -12,6 +12,9 @@ export default function StudentHome() {
   const [contents, setContents] = useState<Content[]>([]);
   const [contentLoaded, setContentLoaded] = useState<boolean>(false);
 
+  const [games, setGames] = useState<GameContent[]>([]);
+  const [gamesLoaded, setGamesLoaded] = useState<boolean>(false);
+
   useEffect(() => {
     getUserName().then(res => {
       fetch(`http://localhost:3333/studentContents/${res.id}`)
@@ -19,6 +22,13 @@ export default function StudentHome() {
       .then(data => {
         setContents(data);
         setContentLoaded(true);
+      })
+
+      fetch(`http://localhost:3333/studentGames/${res.id}`)
+      .then(json => json.json())
+      .then(data => {
+        setGames(data);
+        setGamesLoaded(true);
       })
     })
   }, [])
@@ -31,7 +41,8 @@ export default function StudentHome() {
         <p className="text-xl text-azul font-semibold transition-colors cursor-pointer hover:text-verde dark:text-azulsel">Conteúdos novos</p>
         <p className="text-xl text-azul font-semibold transition-colors cursor-pointer hover:text-verde dark:text-azulsel">Você já viu</p>
       </div>
-
+    
+      <h1 className={`text-azul font-bold text-2xl mt-4`}>Conteúdos atribuidos</h1>
       {
         (!contentLoaded) ? 
           <ColorRing
@@ -54,6 +65,36 @@ export default function StudentHome() {
                         <h1 className="text-azul text-xl font-semibold dark:text-azulsel">{c.contentName}</h1>
                         <p className="text-azul text-lg dark:text-azulsel">{c.contentDescription}</p>
                         <a href={`/teacher/create?teacherID=${c.teacherID}&contentID=${c.contentID}`} className="self-end inline-block"><ChevronsRight size={32} className="text-azul dark:text-azulsel" /></a>
+                    </div>
+                  )
+                })
+            }
+          </>
+      }
+
+      <h1 className={`text-azul font-bold text-2xl mt-4`}>Jogos atribuidos</h1>
+      {
+        (!gamesLoaded) ? 
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            wrapperStyle={{marginLeft: "25%", marginTop: "15%"}}
+            wrapperClass="blocks-wrapper"
+            colors={['#2E34A6', '#2E34A6', '#2E34A6', '#2E34A6', '#2E34A6']}
+          />
+        :
+          <>
+            {
+              (games.length == 0) ?
+                <h1 className="text-azul text-xl dark:text-azulsel">{"SEM JOGOS ATRIBUIDOS NO MOMENTO 😃"}</h1>
+              :
+                games.map((g) => {
+                  return (
+                    <div key={g.gameID} className="w-full border-2 border-b-4 border-azul p-4 rounded-xl flex flex-col dark:shadow-neon-azul">
+                        <h1 className="text-azul text-xl font-semibold dark:text-azulsel">{g.gameName}</h1>
+                        <p className="text-azul text-lg dark:text-azulsel">{g.gameDescription}</p>
+                        <a href={`/games?id=${g.gameID}`} className="self-end inline-block"><ChevronsRight size={32} className="text-azul dark:text-azulsel" /></a>
                     </div>
                   )
                 })

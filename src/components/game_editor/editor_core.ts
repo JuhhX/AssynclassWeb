@@ -36,7 +36,8 @@ const commands : CommandsInterface = {
     "component": components,
     "style": style,
     "model": model,
-    "delete": deleteComponent
+    "delete": deleteComponent,
+    "owner": owner
 }
 
 let globalVariables : VariablesInterface = {};
@@ -47,6 +48,8 @@ let globalModels : EventsInterface = {};
 
 let globalRenderStack : EventsInterface | null = null;
 let renderStackPointer : number = -1;
+
+let gameOwner: string = "";
 
 export function useVariables(){
 
@@ -95,6 +98,14 @@ export function useStyles(){
     }
 
     return {getStyles, getStyleByName};
+}
+
+export function useData(){
+    function getOwner(){
+        return gameOwner;
+    }
+
+    return {getOwner}
 }
 
 export function useRenderStack(){
@@ -459,6 +470,10 @@ export function components(params: string){
 export function deleteComponent(params: string){
     if(params in globalComponents)
         delete globalComponents[params];
+}
+
+export function owner(params: string){
+    gameOwner = params;
 }
 
 export function render(content: string[]){

@@ -83,6 +83,7 @@ export default function Home() {
                   <>
                     <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"Nome: "}</span>{student.studentName}</p>
                     <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"Código: "}</span>{student.studentID}</p>
+                    <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"Pontos: "}</span>{student.points}</p>
                     <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"Série: "}</span>{resolveGrade(SeriesAlunos[student.studentGrade])}</p>
                     <p className="dark:text-azulsel"><span className="font-semibold mr-2">{"RA: "}</span>{student.ra}</p>
                   </>
@@ -112,6 +113,8 @@ export default function Home() {
                 <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"Nome: "}</span>{student.studentName}</p>
                 <hr />
                 <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"RA: "}</span>{student.ra}</p>
+                <hr />
+                <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"Pontos: "}</span>{student.points}</p>
                 <hr />
                 <p className="text-azul text-lg dark:text-azulsel"><span className="font-semibold">{"Data de nascimento: "}</span>{student.birthday}</p>
                 <hr />

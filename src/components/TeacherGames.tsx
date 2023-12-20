@@ -7,7 +7,7 @@ import { ColorRing } from "react-loader-spinner";
 
 export default function TeacherGames(){
     
-    const [games, setGames] = useState<string[]>([]);
+    const [games, setGames] = useState<GameContent[]>([]);
     const [loaded, setLoaded] = useState<boolean>(false);
 
     useEffect(() => {
@@ -40,11 +40,11 @@ export default function TeacherGames(){
                     games.map((g, i) => {
                         return (
                             <div key={i} className="w-full border-2 border-b-4 border-azul p-4 rounded-xl flex flex-col dark:shadow-neon-azul">
-                                <h1 className="text-azul text-xl font-semibold dark:text-azulsel">{g}</h1>
-                                {/* <p className="text-azul text-lg dark:text-azulsel">{c.contentDescription}</p> */}
+                                <h1 className="text-azul text-xl font-semibold dark:text-azulsel">{g.gameName}</h1>
+                                <p className="text-azul text-lg dark:text-azulsel">{g.gameDescription}</p>
                                 <div className="flex flex-row w-full mt-4 justify-end gap-3">
-                                    <button onClick={() => {navigator.clipboard.writeText(g); alert("Código copiado!")}} className="self-end inline-block"><Copy size={32} className="text-azul dark:text-azulsel" /></button>
-                                    <a href={`/games?id=${g}`} className="self-end inline-block"><ChevronsRight size={32} className="text-azul dark:text-azulsel" /></a>
+                                    <button onClick={() => {navigator.clipboard.writeText(g.gameID); alert("Código copiado!")}} className="self-end inline-block"><Copy size={32} className="text-azul dark:text-azulsel" /></button>
+                                    <a href={`/games?id=${g.gameID}`} className="self-end inline-block"><ChevronsRight size={32} className="text-azul dark:text-azulsel" /></a>
                                 </div>
                             </div>
                           )
