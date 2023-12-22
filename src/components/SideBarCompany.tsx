@@ -24,7 +24,7 @@ export function SideBarCompany(props: SideBarCompanyProps){
 
             fetch(`http://localhost:3333/company/${resp.id}`)
             .then(json => json.json())
-            .then(data => {setUsername(data.companyName); console.log(data);})
+            .then(data => {setUsername(data.companyName);})
 
         });
 

@@ -34,6 +34,8 @@ export default function Container(props: ContainerProps){
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
 
+    const [isUpdate, setUpdate] = useState<boolean>(false);
+
     const downloadRef = useRef<HTMLAnchorElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -50,6 +52,7 @@ export default function Container(props: ContainerProps){
 
     useEffect(() => {
         const template_type = params.get("template");
+        const id = params.get("id");
     
         if(template_type){
           fetch(`http://localhost:3333/templates/${template_type}`, {
@@ -71,9 +74,82 @@ export default function Container(props: ContainerProps){
                 reader.readAsText(data, 'UTF-8');
           })
         }
-    
-      }, []);
+        else if(id){
+            fetch(`http://localhost:3333/games/${id}`, {
+                method: "GET"
+            })
+            .then(resp => resp.blob())
+            .then(data => {
+                const reader = new FileReader();
+                    reader.onload = () => {
+                        var objects = String(reader.result).split("\n");
 
+                        let vars : string[] = [], evts : string[] = [], stys : string[] = [], comp : string[] = [];
+                        let current_reading: string;
+
+                        objects.map(line => {
+                            if(line.startsWith("var:")) current_reading = "var";
+                            else if(line.startsWith("event:")) current_reading = "event";
+                            else if(line.startsWith("style:")) {
+                                if(current_reading != "component")
+                                    current_reading = "style";
+                            }
+                            else if(line.startsWith("component:")) current_reading = "component";
+
+                            if(line != " " && line.length != 0){
+                                if(current_reading == "var")
+                                    vars.push(line);
+                                else if(current_reading == "event")
+                                    evts.push(line);
+                                else if(current_reading == "style")
+                                    stys.push(line);
+                                else if(current_reading == "component")
+                                    comp.push(line);
+                            }
+                        })
+
+                        setVariables(vars);
+                        setEvents(groupData(evts, "event:", "end_event"));
+                        setStyles(groupData(stys, "style:", "end_style"));
+                        setComponents(groupData(comp, "component:", "end_component"));
+                        setUpdate(true);
+                    };
+        
+                    reader.readAsText(data, 'UTF-8');
+            })
+        }
+    
+    }, []);
+      
+    function groupData(data: string[], init: string, end: string) : string[]{
+        
+        let response : string[] = [];
+        let data_aux : string = "";
+        let is_reading : boolean = false;
+
+        data.map(l => {
+            let ignore = false;
+
+            if(l.startsWith(init)){
+                is_reading = true;
+                data_aux += l + "\n";
+                ignore = true;
+            }
+            else if(l == end){
+                is_reading = false;
+                data_aux += l;
+
+                response.push(data_aux);
+                data_aux = "";
+            }
+
+            if(is_reading && !ignore)
+                data_aux += l + "\n";
+        })
+        
+        return response;
+    }
+    
     function getSplited(v: string[]){
         let result: string[] = [];
 
@@ -93,28 +169,57 @@ export default function Container(props: ContainerProps){
     }
 
     function saveInServer(){
-        fetch("http://localhost:3333/upload_game", {
-            method: "POST",
-            body: JSON.stringify(
-                {
-                    teacherID,
-                    gameContent: `${getSplited(renderStack).join("\n")}\n\n${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`,
-                    gameName: name,
-                    gameDescription: description
+        if(isUpdate && teacherID){
+            if(String(params.get("id")).startsWith(teacherID)){
+                fetch(`http://localhost:3333/games/${String(params.get("id"))}`, {
+                    method: "PUT",
+                    body: JSON.stringify(
+                        {
+                            teacherID,
+                            gameContent: `owner: "${teacherID}"\n${getSplited(renderStack).join("\n")}\n\n${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`,
+                            gameName: name,
+                            gameDescription: description
+                        }
+                    ),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    }
+                })
+                .then(data => {
+        
+                    if(data.status == 401)
+                        alert("Atualização não realizada.");
+                    else if(data.status == 200){
+                        alert("Atualização realizada com sucesso.");
+                    }
+                })
+            }
+        }
+        else{
+            fetch("http://localhost:3333/upload_game", {
+                method: "POST",
+                body: JSON.stringify(
+                    {
+                        teacherID,
+                        gameContent: `owner: "${teacherID}"\n${getSplited(renderStack).join("\n")}\n\n${getSplited(variables).join("\n")}\n\n${getSplited(events).join("\n")}\n\n${getSplited(styles).join("\n")}\n\n${getSplited(models).join("\n")}\n\n${getSplited(componentes).join("\n")}`,
+                        gameName: name,
+                        gameDescription: description
+                    }
+                ),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
                 }
-            ),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
-        .then(data => {
-
-            if(data.status == 401)
-                alert("Upload não realizado.");
-            else if(data.status == 200){
-                alert("Upload realizado com sucesso.");
-            }
-        })
+            })
+            .then(data => {
+    
+                if(data.status == 401)
+                    alert("Upload não realizado.");
+                else if(data.status == 200){
+                    alert("Upload realizado com sucesso.");
+                    window.location.href = "/teacher/activities"
+                }
+            })
+        }
     }
 
     function save(final: boolean){

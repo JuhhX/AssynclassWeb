@@ -43,6 +43,9 @@ export default function RenderStack(props: RenderStackInterface){
 
         const IDs = renderStackValue.split("\n").map(i => `"${i.trim()}"`);
 
+        if(renderStackValue.length == 0){
+            return "";
+        } 
         return `renderstack: r \n${IDs.join("\n")}\nend_render_stack` ;
     }
 

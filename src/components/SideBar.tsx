@@ -21,11 +21,14 @@ export function SideBar(props: SideBarProps){
     const {theme, setTheme} = useTheme();
     const [themeType, setThemeType] = useState<boolean>(true)
 
+    const [userType, setUserType] = useState<string>("");
+
     useEffect(() => {
 
         getUserName().then(resp => {
 
             const type = (resp.type == "0") ? "student" : (resp.type == "1") ? "teacher" : "instituition";
+            setUserType(type);
 
             fetch(`http://localhost:3333/${type}/${resp.id}`)
             .then(json => json.json())
@@ -56,7 +59,7 @@ export function SideBar(props: SideBarProps){
             }
             <nav className='flex flex-col pr-2 overflow-auto scrollbar-thin scrollbar-thumb-verde'>
                 {
-                    props.type == "professor" ?
+                    userType == "teacher" ?
                     // ALTERAR A ROTA DO CHAT
                     <>
                         <a href="/teacher/profile" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'>{(username == null) ? <UserCircle2 color="white" size={34} /> : <img src={username} alt="avatar" className='w-8 h-8 rounded-lg' />} Perfil</a>
@@ -68,18 +71,18 @@ export function SideBar(props: SideBarProps){
                         <a href="/teacher/activities" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Gamepad2 color='#5B61CE' size={34} /> Atividades</a>
                         <a href="/teacher/whiteboard" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><AppWindow color='#5B61CE' size={34} /> Lousa</a>
                         <a href="/mind_map" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BrainCircuit color='#5B61CE' size={34} /> Mapas Mentais</a>
-                        <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color='#5B61CE' size={34} /> Cupons</a>
+                        <a href="/coupons" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color='#5B61CE' size={34} /> Cupons</a>
                         <a href="/chat" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><MessagesSquare color='#5B61CE' size={34} /> Chat</a>
                         <a href="/api/disconnect" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><LogOut color='#5B61CE' size={34} /> Sair</a>
                     </>
-                    : props.type == "aluno" ?
+                    : userType == "student" ?
                     <>
                         <a href="/student/profile" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'>{(username == null) ? <UserCircle2 color="#5B61CE" size={34} /> : <img src={username} alt="avatar" className='w-8 h-8 rounded-lg' />} Perfil</a>
                         <a href="/student/home" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Home color='#5B61CE' size={34} /> Home</a>
                         <a href="/student/groups" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Users2 color='#5B61CE' size={34} /> Grupos</a>
                         <a href="/student/mentors" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><GraduationCap color='#5B61CE' size={34} /> Mentores</a>
                         <a href="/mind_map" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BrainCircuit color='#5B61CE' size={34} /> Mapas Mentais</a>
-                        <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color='#5B61CE' size={34} /> Cupons</a>
+                        <a href="/coupons" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color='#5B61CE' size={34} /> Cupons</a>
                         <a href="/chat" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><MessagesSquare color='#5B61CE' size={34} /> Chat</a>
                         <a href="/api/disconnect" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><LogOut color='#5B61CE' size={34} /> Sair</a>
                     </>
@@ -90,7 +93,7 @@ export function SideBar(props: SideBarProps){
                         <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BarChart color='#5B61CE' size={34} /> Gráficos</a>
                         <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><GraduationCap color='#5B61CE' size={34} /> Alunos</a>
                         <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Users2 color='#5B61CE' size={34} /> Professores</a>
-                        <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color='#5B61CE' size={34} /> Cupons</a>
+                        <a href="/coupons" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color='#5B61CE' size={34} /> Cupons</a>
                         <a href="" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><ListChecks color='#5B61CE' size={34} /> Doações</a>
                         <a href="/api/disconnect" className='text-azulsel font-semibold text-xl flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><LogOut color='#5B61CE' size={34} /> Sair</a>
                     </>

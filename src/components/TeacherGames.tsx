@@ -1,7 +1,7 @@
 "use client"
 
 import { getUserName } from "@/lib/user/user";
-import { ChevronsRight, Copy } from "lucide-react";
+import { ChevronsRight, Copy, Trash } from "lucide-react";
 import { useEffect, useState } from "react"
 import { ColorRing } from "react-loader-spinner";
 
@@ -20,6 +20,20 @@ export default function TeacherGames(){
             })
         })
     }, []);
+
+    function deleteGame(gameID: string){
+        let confirm_option : boolean = confirm("Você está prestes a apagar seu jogo.");
+
+        if(confirm_option){
+            fetch(`http://localhost:3333/games/${gameID}`,{
+                method: "DELETE"
+            })
+            .then(_r => {
+                console.log("Jogo deletado com sucesso.")
+                window.location.reload();
+            })
+        }
+    }
     
     return (
         <div className="flex flex-col gap-4 pt-6">
@@ -43,6 +57,7 @@ export default function TeacherGames(){
                                 <h1 className="text-azul text-xl font-semibold dark:text-azulsel">{g.gameName}</h1>
                                 <p className="text-azul text-lg dark:text-azulsel">{g.gameDescription}</p>
                                 <div className="flex flex-row w-full mt-4 justify-end gap-3">
+                                    <button onClick={() => {deleteGame(g.gameID)}} className="self-end inline-block"><Trash size={32} className="text-azul dark:text-azulsel" /></button>
                                     <button onClick={() => {navigator.clipboard.writeText(g.gameID); alert("Código copiado!")}} className="self-end inline-block"><Copy size={32} className="text-azul dark:text-azulsel" /></button>
                                     <a href={`/games?id=${g.gameID}`} className="self-end inline-block"><ChevronsRight size={32} className="text-azul dark:text-azulsel" /></a>
                                 </div>

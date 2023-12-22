@@ -24,7 +24,7 @@ export default function FunctionsContainer(props: FunctionsContainerProps){
     const [structure, setStructure] = useState<string>("");
     const [functionType, setFunctionType] = useState<FunctionsTypes>(FunctionsTypes.SINGLE);
 
-    const SINGLE = ["print", "alert", "clear", "delete", "call", "text", "imageurl", "input", "placeholder", "storetextin", "canmove", "onclick", "onmouseover", "onmouseout", "style", "posx", "posy", "connect", "clearstyle", "getname", "visible", "render"];
+    const SINGLE = ["print", "alert", "clear", "delete", "call", "text", "imageurl", "input", "placeholder", "storetextin", "canmove", "onclick", "onmouseover", "onmouseout", "style", "posx", "posy", "connect", "clearstyle", "getname", "visible", "render", "points"];
     const USE_VARIABLE = ["sum", "sub", "mult", "div", "random", "randomf", "pow", "sqrt", "set", "concat"]
     const USE_EVENT = ["loop", "if", "timeout", "interval", "collision", "eventtarget"]
     const CREATE = ["new"]
@@ -118,6 +118,7 @@ export default function FunctionsContainer(props: FunctionsContainerProps){
                         <option value="loop">LOOP</option>
                         <option value="if">SE</option>
                         <option value="render">RENDERIZAR</option>
+                        <option value="points">PONTOS</option>
                         <option value="call">CHAMAR</option>
                         <option value="timeout">CHAMAR APÓS TEMPO</option>
                         <option value="interval">CHAMAR EM INTERVALO</option>

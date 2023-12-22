@@ -437,7 +437,7 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
                 })
             }).then(resp => {
                 if(resp.status == 200)
-                    alert(`Você ganhou ${points_obtained}`);
+                    alert(`Você ganhou ${points_obtained} pontos.`);
             })
         });
 
