@@ -1,15 +1,23 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 
 import jwt_Decode from "jwt-decode";
 import { setCookie } from "@/lib/auth/auth";
+import { useTheme } from "next-themes";
 
 export default function LoginForm(){
 
     const router = useRouter();
     const [error, setError] = useState<boolean>(false)
+
+    const {setTheme} = useTheme();
+
+    useEffect(() => {
+        setTheme("light");
+    }, []);
+
 
     async function connect(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();

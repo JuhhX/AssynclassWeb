@@ -32,6 +32,17 @@ interface Institution{
     points: number
 }
 
+interface Coupons{
+    couponID: string
+    couponName: string
+    couponDescription: string
+    couponValue: number
+    byCompany: string
+    standOut: boolean
+    endsIn: string,
+    couponCode: string[]
+}
+
 enum MateriasProf{
     MATEMATICA,
     PORTUGUES,
