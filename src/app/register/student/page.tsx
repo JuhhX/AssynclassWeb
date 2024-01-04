@@ -5,6 +5,7 @@ import logo from '../../../assest/logo.png'
 
 import { useSearchParams } from 'next/navigation';
 import { FormEvent, useRef, useState } from 'react';
+import { getUserName } from '@/lib/user/user';
 
 export default function RegisterStudent(){
 
@@ -18,27 +19,30 @@ export default function RegisterStudent(){
 
             const data = new FormData(event.currentTarget);
     
-            fetch("http://localhost:3333/register/student", {
-                method: "POST",
-                body: JSON.stringify({
-                    nome: data.get("nome"),
-                    ra: data.get("ra"),
-                    nascimento: data.get("nascimento"),
-                    serie: data.get("serie"),
-                    email: data.get("email"),
-                    contato: data.get("contato")
-                }),
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                }
-            })
-            .then(data => {
-                if(data.status == 401)
-                    alert("Os dados do formulário não foram preenchidos corretamente!");
-                else if(data.status == 200){
-                    alert("Aluno cadastrado. \nPara se conectar ele deve usar o email do responsável e o RA como senha")
-                    formRef.current.reset();
-                }
+            getUserName().then(resp => {
+                fetch("http://localhost:3333/register/student", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        nome: data.get("nome"),
+                        ra: data.get("ra"),
+                        nascimento: data.get("nascimento"),
+                        serie: data.get("serie"),
+                        email: data.get("email"),
+                        contato: data.get("contato"),
+                        instID: resp.id
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    }
+                })
+                .then(data => {
+                    if(data.status == 401)
+                        alert("Os dados do formulário não foram preenchidos corretamente!");
+                    else if(data.status == 200){
+                        alert("Aluno cadastrado. \nPara se conectar ele deve usar o email do responsável e o RA como senha")
+                        formRef.current.reset();
+                    }
+                })
             })
         }
     }

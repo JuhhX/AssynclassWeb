@@ -12,15 +12,22 @@ export default function CouponsList(){
     const [loaded, setLoaded] = useState<boolean>(false);
 
     useEffect(() => {
-        fetch(`http://localhost:3333/coupons`)
-        .then(r => r.json())
-        .then(data => {
-            if(data)
-                setCoupons(data);
-            else
-                setCoupons([]);
-            setLoaded(true);
-        });
+        getUserName().then(res => {
+            if(res.id == "-1")
+                window.location.href = "/login";
+            else{
+                fetch(`http://localhost:3333/coupons`)
+                .then(r => r.json())
+                .then(data => {
+                    if(data)
+                        setCoupons(data);
+                    else
+                        setCoupons([]);
+                    setLoaded(true);
+                });
+            }
+        })
+
     }, []);
 
     function requestCoupon(companyID: string, couponID: string){
@@ -85,6 +92,8 @@ export default function CouponsList(){
                         }
                     })
             }
+
+            <button className="fixed bottom-2 left-2 bg-azul cursor-pointer transition-colors rounded-xl p-4 text-xl text-white hover:bg-azulsel">Contato com suporte</button>
 
             <SideBar type="aluno" />
         </main>

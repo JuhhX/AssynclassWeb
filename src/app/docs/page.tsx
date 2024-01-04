@@ -6,6 +6,7 @@ import EventsDocs from "@/components/tutorials/EventsDocs";
 import Introduction from "@/components/tutorials/Introduction";
 import LoopsCondition from "@/components/tutorials/LoopsConditions";
 import Operations from "@/components/tutorials/Operations";
+import RenderCommands from "@/components/tutorials/RenderCommands";
 import { ReactNode, useState } from "react";
 
 export default function Docs(){
@@ -18,6 +19,7 @@ export default function Docs(){
             <EventsDocs />,
             <LoopsCondition />,
             <ComponentsDocs />,
+            <RenderCommands />
         ]
     );
 
@@ -49,6 +51,7 @@ export default function Docs(){
                             <li><a href="#RANDOMF" onClick={() => setCurrentSection(1)}>RANDOMF (Decimal aleatório)</a></li>
                             <li><a href="#CONCAT" onClick={() => setCurrentSection(1)}>CONCAT (Concatenar)</a></li>
                             <li><a href="#SET" onClick={() => setCurrentSection(1)}>SET (Definir)</a></li>
+                            <li><a href="#POINTS" onClick={() => setCurrentSection(1)}>POINTS (Pontos)</a></li>
                         </ul>
                     </details>
                     <details className="text-xl">
@@ -73,6 +76,13 @@ export default function Docs(){
                             <li><a href="#COMPONENTS" onClick={() => setCurrentSection(4)}>COMPONENT (Componente)</a></li>
                             <li><a href="#STYLE" onClick={() => setCurrentSection(4)}>STYLE (Estilo)</a></li>
                             <li><a href="#DELETE" onClick={() => setCurrentSection(4)}>DELETE (Deletar)</a></li>
+                        </ul>
+                    </details>
+                    <details className="text-xl">
+                        <summary><a href="#RENDER_COMMANDS" onClick={() => setCurrentSection(5)}>Chamando outros jogos</a></summary>
+                        <ul className="list-decimal p-2">
+                            <li><a href="#RENDER_STACK" onClick={() => setCurrentSection(5)}>RENDER STACK (Pilha de renderização)</a></li>
+                            <li><a href="#RENDER" onClick={() => setCurrentSection(5)}>RENDER (Renderizar)</a></li>
                         </ul>
                     </details>
                 </div>

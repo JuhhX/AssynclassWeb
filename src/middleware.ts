@@ -4,13 +4,18 @@ import jwt_Decode from "jwt-decode";
 export function middleware(request: NextRequest) {
     const token : string | undefined = request.cookies.get('token')?.value
     //3 porque ainda terá a instituição que será o 2
-    const typeURL = (request.url.includes("student")) ? "0" : 
+    let typeURL = (request.url.includes("student")) ? "0" : 
     (request.url.includes("teacher")) ? "1" : 
     (request.url.includes("instituition")) ? "2" : 
     (request.url.includes("company")) ? "3" : "4";
 
+    if(request.url.includes("instituition/search_")){
+        typeURL = "4";
+    }
+
     if(token){
         const decode : any = jwt_Decode(token);
+        
         if(typeURL == "4"){
             return NextResponse.next()
         }

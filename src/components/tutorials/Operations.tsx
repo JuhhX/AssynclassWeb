@@ -152,6 +152,23 @@ export default function Operations(){
             />
             <p className="text-lg mt-5 text-justify">Ao executar o comando "set", o valor da variável pontuação passará a ser 100.</p>
 
+            <h1 className="text-2xl font-bold mt-8" id="POINTS"> POINTS (Pontos)</h1>
+            <p className="text-lg mt-5 text-justify">Este comando permite que você dê pontos para um usuário: </p>
+            <p className="text-lg mt-2 text-justify"><span className="text-verde">{"points: numero"}</span></p>
+            <CodeContainer
+                codeLines={
+                    [
+                        'points: 100'
+                    ]
+                }
+            />
+            <p className="text-lg mt-5 text-justify">Este comando segue algumas regras:</p>
+            <p className="text-lg mt-2 text-justify">• O valor mínimo que pode ser definido é 0 e o máximo 100.</p>
+            <p className="text-lg mt-2 text-justify">• O aluno ganha a pontuação definida no comando.</p>
+            <p className="text-lg mt-2 text-justify">• O professor ganha a pontuação definida no comando dividido por 2.</p>
+            
+            <p className="text-lg mt-5 text-justify">A pontuação obtida pode ser trocada por <a href="/coupons" className="text-verde underline">cupons.</a></p>
+
         </div>
     );
 }

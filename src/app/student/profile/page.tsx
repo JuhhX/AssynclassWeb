@@ -1,5 +1,6 @@
 "use client"
 
+import AvatarEditor from "@/components/AvatarEditor"
 import { SideBar } from "@/components/SideBar"
 import { resolveGrade } from "@/lib/general"
 import { getUserName } from "@/lib/user/user"
@@ -33,6 +34,7 @@ export default function Home() {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
 
   const [isDataLoaded, setDataLoaded] = useState<boolean>(false);
+  const [openAvatarEditor, setOpenAvatarEditor] = useState<boolean>(false);
 
   useEffect(() => {
     getUserName().then(res => {
@@ -74,7 +76,7 @@ export default function Home() {
           :
             <>
               <div className="w-1/4 h-full justify-center flex flex-col items-center p-4">
-                {(student == null) ? <UserCircle2 size={90} className="text-azul" /> : <img src={student.avatarURL} alt="avatar" className='w-14 h-14 rounded-lg self-center' />}
+                {(student == null) ? <UserCircle2 size={90} className="text-azul" /> : <img src={student.avatarURL} alt="avatar" onClick={() => {setOpenAvatarEditor(true)}} className='w-14 h-14 rounded-lg self-center cursor-pointer' />}
               </div>
 
               <div className="w-1/2 p-4 text-azul text-lg flex flex-col justify-center">
@@ -150,6 +152,11 @@ export default function Home() {
             })
         }
       </div>
+
+      {
+        openAvatarEditor &&
+        <AvatarEditor avatar={student?.avatarURL} openEditor={setOpenAvatarEditor} studentID={String(student?.studentID)} />
+      }
 
       <SideBar type="aluno" />
 

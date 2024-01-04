@@ -25,7 +25,7 @@ interface Position {
 
 export default function GraphicComponent(props: GraphicComponentInterface) {
 
-    const params = useSearchParams();
+    const p = useSearchParams();
     const dRef = useRef<any>();
 
     const [properties, setProperties] = useState<PropertiesInterface>(
@@ -386,17 +386,24 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
             else
                 gameID = renderStack.nextRender();
 
-            if(gameID)
+            if(gameID && gameID != "")
                 gameID = gameID.substring(1, gameID.length-1);
             else{
                 alert("Você finalizou as atividades!");
                 window.location.href = "/teacher/activities"
             } 
         }
-        else
-            gameID = params;
+        else{
+            if(gameID != "")
+                gameID = params;
+            else{
+                alert("Você finalizou as atividades!");
+                window.location.href = "/teacher/activities"
+            }
+        }
         
-
+        console.log("==========");
+        console.log(gameID);
         fetch(`http://localhost:3333/games/${gameID}`)
         .then(res => res.blob())
         .then(data => {
@@ -433,7 +440,8 @@ export default function GraphicComponent(props: GraphicComponentInterface) {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    points: points_obtained
+                    points: points_obtained,
+                    gameID: p.get("id")
                 })
             }).then(resp => {
                 if(resp.status == 200)

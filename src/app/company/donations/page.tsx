@@ -2,7 +2,7 @@
 
 import { ItemList } from "@/app/instituition/donations_list/page";
 import { SideBarCompany } from "@/components/SideBarCompany";
-import ToDonate_Item from "@/components/toDonate_Item";
+import ToDonate_Item from "@/components/ToDonate_Item";
 import { ChevronsRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ColorRing } from "react-loader-spinner";
