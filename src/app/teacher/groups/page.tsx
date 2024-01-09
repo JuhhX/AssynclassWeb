@@ -3,6 +3,7 @@
 import AtrContent from "@/components/AtrContent";
 import GroupAll from "@/components/GroupAll";
 import GroupCreation from "@/components/GroupCreation";
+import InstitutionStudents from "@/components/InstitutionStudents";
 import { SideBar } from "@/components/SideBar";
 import TeacherMentAll from "@/components/TeacherMentAll";
 import TeacherStudentAll from "@/components/TeacherStudentAll";
@@ -20,6 +21,7 @@ export default function TeacherGroups() {
 
     useEffect(() => {
         getUserName().then(res => {
+            
             fetch(`http://localhost:3333/contents/${res.id}`)
             .then(json => json.json())
             .then(data => {
@@ -92,6 +94,7 @@ export default function TeacherGroups() {
                     <button onClick={() => setShowInterface(1)} className="text-lg text-azul dark:text-azulsel transition-colors hover:text-verde">Meus grupos</button>
                     <button onClick={() => setShowInterface(2)} className="text-lg text-azul dark:text-azulsel transition-colors hover:text-verde">Criar grupos</button>
                     <button onClick={() => setShowInterface(3)} className="text-lg text-azul dark:text-azulsel transition-colors hover:text-verde">Solicitações</button>
+                    <button onClick={() => setShowInterface(4)} className="text-lg text-azul dark:text-azulsel transition-colors hover:text-verde">Procurar alunos</button>
                 </div>
 
                 <div className="w-1/2 h-full border-2 border-b-4 border-azul rounded-xl scrollbar-thin scrollbar-thumb-azul flex flex-col gap-4 p-4 pb-16 overflow-auto dark:shadow-neon-azul">
@@ -102,8 +105,9 @@ export default function TeacherGroups() {
                             <GroupAll openAtr={selectGroup} setGroups={setGroups} containerType={1} />
                         : (showInterface == 2) ?
                             <GroupCreation />
-                        : 
+                        : (showInterface == 3) ?
                             <TeacherMentAll />
+                        : <InstitutionStudents />
                     }
                     
                 </div>

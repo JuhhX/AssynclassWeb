@@ -1,5 +1,6 @@
 "use client"
 
+import AvatarEditor from "@/components/AvatarEditor";
 import { SideBar } from "@/components/SideBar";
 import { resolveGrade } from "@/lib/general";
 import { getUserName } from "@/lib/user/user";
@@ -39,6 +40,7 @@ export default function TeacherProfile() {
     const [profileOwner] = useState<boolean>((params.get("teacherID") == undefined) ? true : false);
 
     const [isDataLoaded, setDataLoaded] = useState<boolean>(false);
+    const [openAvatarEditor, setOpenAvatarEditor] = useState<boolean>(false);
 
     useEffect(() => {
         getUserName().then(res => {
@@ -93,7 +95,7 @@ export default function TeacherProfile() {
                 {
                     (isDataLoaded) ? 
                         <>
-                            {(teacher == null) ? <UserCircle2 size={90} className="text-azul" /> : <img src={teacher.avatarURL} alt="avatar" className='w-14 h-14 rounded-lg self-center' />}
+                            {(teacher == null) ? <UserCircle2 size={90} className="text-azul" /> : <img src={teacher.avatarURL} alt="avatar" onClick={() => {setOpenAvatarEditor(true)}} className='w-14 h-14 rounded-lg self-center cursor-pointer' />}
 
 
                             <div className="w-3/4 pl-4 justify-center flex flex-col">
@@ -199,6 +201,11 @@ export default function TeacherProfile() {
                                 : <h1 className="text-center text-2xl text-azul font-semibold dark:text-azulsel">Este professor ainda não postou uma atividade ou jogo 🙁</h1>
                             }
                         </div>
+                }
+
+                {
+                    openAvatarEditor &&
+                    <AvatarEditor avatar={teacher?.avatarURL} openEditor={setOpenAvatarEditor} userType={1} userID={String(teacher?.teacherID)} />
                 }
             </div>
 

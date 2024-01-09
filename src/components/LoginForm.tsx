@@ -45,6 +45,7 @@ export default function LoginForm(){
                 const type : any = jwt_Decode(data.token);
                 
                 setCookie(data.token)
+                alert("Redirecionando ...")
 
                 router.push("/api?type="+type.type)
 

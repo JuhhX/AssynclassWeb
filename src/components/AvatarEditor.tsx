@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 interface AvatarEditorProps{
     avatar: string | undefined,
     openEditor: Function,
-    studentID: string | undefined
+    userID: string | undefined
+    userType: number
 }
 
 interface Characteristics{
@@ -34,8 +35,8 @@ export default function AvatarEditor(props: AvatarEditorProps){
 
     function saveAvatar(){
 
-        if(props.studentID && currentAvatar){
-            fetch(`http://localhost:3333/student/${props.studentID}/avatar`, {
+        if(props.userID && currentAvatar){
+            fetch(`http://localhost:3333/${(!props.userType) ? "student" : "teacher"}/${props.userID}/avatar`, {
                 method: "PUT",
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',

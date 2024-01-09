@@ -43,23 +43,21 @@ interface Coupons{
     couponCode: string[]
 }
 
-enum MateriasProf{
-    MATEMATICA,
-    PORTUGUES,
-    CIENCIAS,
-    INGLES,
-    GEOGRAFIA,
-    HISTORIA
+interface Plan{
+    cuponsAvailable: number
+    planValue: number
+    startedIn: string
+    endsIn: string
+    planType: PlanTypes
+    visibility: boolean
 }
 
-enum SeriesAlunos{
-    ANO_6,
-    ANO_7,
-    ANO_8,
-    ANO_9,
-    ANO_1,
-    ANO_2,
-    ANO_3,
+interface Company{
+    companyID: string
+    companyName: string
+    cnpj: string
+    coupons: Coupons[]
+    plan: Plan
 }
 
 interface studentsGroups{
@@ -100,4 +98,32 @@ interface GameContent{
     teacherID: string,
     gameContent: string,
     toStudent: number[]
+}
+
+enum PlanTypes{
+    MONTHLY_NORMAL,
+    YEARLY_NORMAL,
+    MONTHLY_PLUS,
+    YEARLY_PLUS,
+    CUSTOM,
+    VOID,
+}
+
+enum MateriasProf{
+    MATEMATICA,
+    PORTUGUES,
+    CIENCIAS,
+    INGLES,
+    GEOGRAFIA,
+    HISTORIA
+}
+
+enum SeriesAlunos{
+    ANO_6,
+    ANO_7,
+    ANO_8,
+    ANO_9,
+    ANO_1,
+    ANO_2,
+    ANO_3,
 }

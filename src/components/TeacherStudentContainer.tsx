@@ -1,4 +1,4 @@
-import { MessageSquare } from "lucide-react"
+import { MessageSquare, UserPlus } from "lucide-react"
 import { useRouter } from "next/navigation";
 
 interface TeacherStudentContainerProps{
@@ -6,7 +6,8 @@ interface TeacherStudentContainerProps{
     serieAluno: string,
     avatarURL: string,
     teacherID: string,
-    studentID: string
+    studentID: string,
+    addStudent?: boolean
 }
 
 export default function TeacherStudentContainer(props : TeacherStudentContainerProps){
@@ -24,8 +25,30 @@ export default function TeacherStudentContainer(props : TeacherStudentContainerP
                 'Content-type': 'application/json; charset=UTF-8',
             }
         })
-
+        
         router.push("/chat")
+    }
+    
+    function addStudent(){
+        fetch("http://localhost:3333/teacher/add_student", {
+            method: "PUT",
+            body: JSON.stringify({
+                studentID: props.studentID,
+                teacherID: props.teacherID
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        .then(data => {
+            if(data.status == 200){
+                alert("Aluno adicionado com sucesso");
+            }
+            else{
+                alert("Algo de errado aconteceu");
+            }
+        })
+        
     }
 
     return (
@@ -35,9 +58,16 @@ export default function TeacherStudentContainer(props : TeacherStudentContainerP
                 <h1 className="dark:text-azulsel">{props.nomeAluno}</h1>
                 <p className="dark:text-azulsel">{props.serieAluno}</p>
             </div>
-            <button onClick={() => {createChat()}}>
-                <MessageSquare />
-            </button>
+            {
+                props.addStudent ? 
+                    <button onClick={() => {addStudent()}}>
+                        <UserPlus />
+                    </button>
+                :
+                    <button onClick={() => {createChat()}}>
+                        <MessageSquare />
+                    </button>
+            }
         </div>
     )
 }

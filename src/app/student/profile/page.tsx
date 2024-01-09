@@ -155,7 +155,7 @@ export default function Home() {
 
       {
         openAvatarEditor &&
-        <AvatarEditor avatar={student?.avatarURL} openEditor={setOpenAvatarEditor} studentID={String(student?.studentID)} />
+        <AvatarEditor avatar={student?.avatarURL} openEditor={setOpenAvatarEditor} userType={0} userID={String(student?.studentID)} />
       }
 
       <SideBar type="aluno" />

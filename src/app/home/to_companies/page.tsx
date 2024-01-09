@@ -39,9 +39,9 @@ export default function(){
                     <h1 className="text-8xl font-bold text-center text-azul dark:text-azulsel">Planos</h1>
 
                     <div className="flex flex-row items-center justify-center gap-4">
-                        <PlansContainer title="Plano mensal (comum)" access="Acesso por 30 dias" cupons="Poste até 10 cupons" visibility="Visibilidade comum" value="R$ XX,XX" image={babyOwl} />
-                        <PlansContainer title="Plano anual (comum)" access="Acesso por 365 dias" cupons="Poste até 20 cupons" visibility="Visibilidade comum" value="R$ XX,XX" image={adultOwl} />
-                        <PlansContainer title="Plano customizado" access="Acesso de no mínimo 7 dias" cupons="Escolha quantos cupons" visibility="Escolha a visibilidade" value="R$ XX,XX" image={eggOwl} />
+                        <PlansContainer title="Plano mensal (comum)" access="Acesso por 30 dias" cupons="Poste até 50 cupons" visibility="Visibilidade comum" value="R$ 30,00" image={babyOwl} />
+                        <PlansContainer title="Plano anual (comum)" access="Acesso por 365 dias" cupons="Poste até 600 cupons" visibility="Visibilidade comum" value="R$ 360,00" image={adultOwl} />
+                        <PlansContainer title="Plano customizado" access="Acesso de no mínimo 7 dias" cupons="Escolha quantos cupons" visibility="Escolha a visibilidade" value="R$ A definir" image={eggOwl} />
                     </div>
 
                     <button className="bg-azul p-2 px-5 text-white rounded-xl transition-colors duration-500 hover:bg-verde dark:bg-azulsel" onClick={() => {setShowAnotherPlans(!showAnotherPlans)}}>Mostrar outros planos</button>
@@ -49,8 +49,8 @@ export default function(){
                     {
                         (showAnotherPlans) &&
                         <div className="flex flex-row items-center justify-center gap-4">
-                            <PlansContainer title="Plano mensal (plus)" access="Acesso por 30 dias" cupons="Poste até 20 cupons" visibility="Cupons em destaque" value="R$ XX,XX" image={babyOwl} hueRotate />
-                            <PlansContainer title="Plano anual (plus)" access="Acesso por 365 dias" cupons="Poste até 40 cupons" visibility="Cupons em destaque" value="R$ XX,XX" image={adultOwl} hueRotate />
+                            <PlansContainer title="Plano mensal (plus)" access="Acesso por 30 dias" cupons="Poste até 100 cupons" visibility="Cupons em destaque" value="R$ 60,00" image={babyOwl} hueRotate />
+                            <PlansContainer title="Plano anual (plus)" access="Acesso por 365 dias" cupons="Poste até 1200 cupons" visibility="Cupons em destaque" value="R$ 720,00" image={adultOwl} hueRotate />
                         </div>
                     }
                 </div>
