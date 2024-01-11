@@ -46,7 +46,7 @@ export default function CompanyHome(){
                             <div className="w-1/2 bg-cinza p-4 rounded-lg flex flex-col">
                                 <h1 className="text-azul text-xl font-bold">{"Veja seu progresso!"}</h1>
                                 <p className="text-verde text-lg">{"Analise os gráficos e veja seu desempenho."}</p>
-                                <a href={``} className="self-end inline-block"><ChevronsRight size={32} className="text-azul" /></a>
+                                <a href={`/company/charts`} className="self-end inline-block"><ChevronsRight size={32} className="text-azul" /></a>
                             </div>
                             <div className="w-1/2 bg-cinza p-4 rounded-lg flex flex-col">
                                 <h1 className="text-azul text-xl font-bold">{"Seu plano"}</h1>

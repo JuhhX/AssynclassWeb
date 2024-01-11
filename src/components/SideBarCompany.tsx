@@ -50,7 +50,7 @@ export function SideBarCompany(props: SideBarCompanyProps){
                         <a href="/company/home" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><Building2 color="white" size={34} />{(username) ? username : "Carregando ..."}</a>
                         <a href="/company/coupons" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><CircleDollarSign color="white" size={34} />Cupons</a>
                         <a href="/company/plan" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BookOpenCheck color="white" size={34} />Plano</a>
-                        <a href="" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BarChart color="white" size={34} />Gráficos</a>
+                        <a href="/company/charts" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><BarChart color="white" size={34} />Gráficos</a>
                         <a href="/company/donations" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><ListChecks color="white" size={34} />Doações</a>
                         <a href="/api/disconnect" className='text-white text-lg flex flex-row gap-6 p-2 px-4 transition-colors rounded-l-lg hover:bg-verde'><LogOut color="white" size={34} />Sair</a>
                     </>
